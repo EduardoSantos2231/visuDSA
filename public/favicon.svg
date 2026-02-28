@@ -1,25 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <!-- Gradiente sutil para dar profundidade -->
-    <radialGradient id="eyeGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#dcdcdc"/>
-    </radialGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00c853"/>
+      <stop offset="100%" stop-color="#00e676"/>
+    </linearGradient>
   </defs>
 
-  <!-- Fundo transparente -->
-  
-  <!-- Contorno do olho -->
-  <path d="M8 32C14 18 50 18 56 32C50 46 14 46 8 32Z"
-        fill="url(#eyeGrad)"
-        stroke="#111"
-        stroke-width="3"
-        stroke-linejoin="round"/>
+  <!-- Estrutura de Dados (Árvore Binária) - simplificada -->
+  <g stroke="url(#greenGrad)" stroke-width="1.5" fill="white">
+    <line x1="32" y1="15" x2="20" y2="28"/>
+    <line x1="32" y1="15" x2="44" y2="28"/>
+    <line x1="20" y1="28" x2="14" y2="40"/>
+    <line x1="20" y1="28" x2="26" y2="40"/>
+    <line x1="44" y1="28" x2="38" y2="40"/>
+    <line x1="44" y1="28" x2="50" y2="40"/>
 
-  <!-- Íris -->
-  <circle cx="32" cy="32" r="12" fill="#111"/>
+    <circle cx="32" cy="15" r="2.5"/>
+    <circle cx="20" cy="28" r="2"/>
+    <circle cx="44" cy="28" r="2"/>
+    <circle cx="14" cy="40" r="1.5"/>
+    <circle cx="26" cy="40" r="1.5"/>
+    <circle cx="38" cy="40" r="1.5"/>
+    <circle cx="50" cy="40" r="1.5"/>
+  </g>
 
-  <!-- Botão de play -->
-  <polygon points="29,24 29,40 42,32"
-           fill="#ffffff"/>
+  <!-- Olho -->
+  <g>
+    <path d="M12 32C18.5 22.5 45.5 22.5 52 32C45.5 41.5 18.5 41.5 12 32Z"
+          fill="none"
+          stroke="url(#greenGrad)"
+          stroke-width="1.5"/>
+
+    <circle cx="32" cy="32" r="7" fill="white"/>
+    <circle cx="32" cy="32" r="4" fill="url(#greenGrad)"/>
+    <polygon points="30.5,29 30.5,35 35,32" fill="white"/>
+  </g>
 </svg>
