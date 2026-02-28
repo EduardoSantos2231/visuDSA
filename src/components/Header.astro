@@ -1,5 +1,4 @@
 ---
-import Logo from "../assets/logo.svg"
 import { Home, GraduationCap, Binary, Database } from '@lucide/astro';
 
 const currentPath = Astro.url.pathname;
@@ -12,14 +11,11 @@ const infos = [
 ]
 ---
 
-<header class="sticky top-0 z-50 w-full bg-card/80 backdrop-blur-md border-b border-border transition-all duration-300">
+<header class="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-dashed border-primary/30 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center" role="navigation" aria-label="Navegação principal">
     
     <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="VisuDSA - Página inicial">
-      <span class="size-9">
-        <Logo/>
-      </span>
-      <span class="font-bold text-foreground hidden sm:block">VisuDSA</span>
+      <span class="font-bold text-lg text-foreground">VisuDSA</span>
     </a>
 
     <button 
@@ -46,7 +42,7 @@ const infos = [
               aria-current={isActive ? 'page' : undefined}
               class:list={[
                 "flex items-center gap-2 text-sm font-medium transition-colors duration-200 relative group",
-                isActive ? "text-accent" : "text-muted-foreground hover:text-accent"
+                isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-accent"
               ]}
             >
               <item.Icon class="size-4" aria-hidden="true" />
@@ -64,11 +60,11 @@ const infos = [
 
   <div 
     id="mobile-menu" 
-    class="hidden md:hidden absolute top-full left-0 w-full bg-card border-b border-border shadow-xl overflow-hidden animate-slide-down"
+    class="hidden md:hidden absolute top-full left-0 w-full bg-background border-b border-dashed border-primary/30 shadow-xl overflow-hidden animate-slide-down"
     role="menu"
     aria-label="Menu mobile"
   >
-    <ul class="flex flex-col p-4 bg-card">
+    <ul class="flex flex-col p-4 bg-background">
       {infos.map((item) => {
         const isActive = currentPath === item.link || (item.link !== '/' && currentPath.startsWith(item.link));
         return (
@@ -80,7 +76,7 @@ const infos = [
               role="menuitem"
               class:list={[
                 "flex items-center gap-3 py-3 px-4 transition-all rounded-lg",
-                isActive ? "text-accent bg-accent/10" : "text-muted-foreground hover:bg-secondary hover:text-accent"
+                isActive ? "text-primary font-semibold bg-secondary" : "text-muted-foreground hover:bg-secondary hover:text-primary"
               ]}
             >
               <item.Icon class="size-5" aria-hidden="true" />
