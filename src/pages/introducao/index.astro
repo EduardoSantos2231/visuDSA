@@ -1,11 +1,245 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert } from '@lucide/astro';
 ---
 
 <Layout title="Introdução">
   <Header />
-  <main>
-    <!-- Introdução - Em desenvolvimento -->
+  <main class="px-4 py-8 max-w-4xl mx-auto">
+    
+    <!-- Introdução -->
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Introdução a Algoritmos e Notação Big O</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        Entender algoritmos e sua eficiência é fundamental para qualquer desenvolvedor. 
+        Esta seção apresenta os conceitos básicos que servirão como fundamento para o 
+        restante do conteúdo.
+      </p>
+    </section>
+
+    <!-- O que é um algoritmo? -->
+    <section class="mb-12">
+      <SectionHeader label="Conceito">
+        <Cpu slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O que é um algoritmo?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um algoritmo é simplesmente um conjunto de passos bem definidos para resolver um problema.
+        </p>
+        <p>
+          No dia a dia, seguimos algoritmos o tempo todo. Preparar uma refeição, montar um móvel 
+          ou seguir uma receita são exemplos de processos organizados em etapas. Na computação, 
+          o conceito é exatamente o mesmo: um algoritmo define como uma determinada operação 
+          será executada.
+        </p>
+        <p>
+          Dentro de um sistema, operações como buscar um elemento, inserir um valor, remover 
+          um dado ou ordenar uma lista podem ser realizadas de diferentes maneiras. Cada maneira 
+          representa um algoritmo diferente.
+        </p>
+        <p>
+          O ponto central é que dois algoritmos podem resolver o mesmo problema, mas com níveis 
+          de eficiência muito diferentes. É aqui que começa a importância de medir desempenho.
+        </p>
+      </div>
+    </section>
+
+    <!-- Por que medir eficiência? -->
+    <section class="mb-12">
+      <SectionHeader label="Desempenho">
+        <Gauge slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Por que medir eficiência?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Quando analisamos um algoritmo, não basta dizer que ele executa "20 passos" ou "300 passos". 
+          Isso porque o número de passos depende diretamente da quantidade de dados processados.
+        </p>
+        <p>
+          Se a entrada dobra de tamanho, o tempo de execução pode permanecer igual, dobrar, 
+          quadruplicar ou crescer ainda mais.
+        </p>
+        <p>
+          Para descrever esse comportamento de crescimento de forma padronizada, utilizamos 
+          a Notação Big O.
+        </p>
+      </div>
+    </section>
+
+    <!-- O que é a Notação Big O? -->
+    <section class="mb-12">
+      <SectionHeader label="Teoria">
+        <Infinity slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O que é a Notação Big O?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A Notação Big O é uma forma de descrever como o número de operações de um algoritmo 
+          cresce conforme a quantidade de dados aumenta.
+        </p>
+        <p>
+          Ela não mede tempo em segundos, nem depende do hardware. Ela mede crescimento 
+          relativo do número de passos.
+        </p>
+        <p>
+          Em outras palavras, Big O responde à seguinte pergunta: como o desempenho do 
+          algoritmo se comporta à medida que o volume de dados cresce?
+        </p>
+      </div>
+    </section>
+
+    <!-- O(1) - Tempo Constante -->
+    <section class="mb-12">
+      <SectionHeader label="Classificação">
+        <ArrowRight slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O(1) — Tempo Constante</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um algoritmo O(1) executa sempre o mesmo número de operações, independentemente 
+          do tamanho da entrada.
+        </p>
+        <p>
+          Exemplos comuns incluem acessar um elemento pelo índice ou inserir um valor 
+          no final de uma estrutura adequada.
+        </p>
+        <p>
+          Mesmo que a quantidade de dados aumente, o custo permanece estável.
+        </p>
+      </div>
+    </section>
+
+    <!-- O(N) - Tempo Linear -->
+    <section class="mb-12">
+      <SectionHeader label="Classificação">
+        <ArrowRight slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O(N) — Tempo Linear</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um algoritmo O(N) executa um número de operações proporcional ao tamanho da entrada.
+        </p>
+        <p>
+          Se a entrada possui N elementos, o algoritmo pode executar até N passos.
+        </p>
+        <p>
+          Um exemplo é a busca linear em uma lista. Se o tamanho dobra, o tempo de 
+          execução também dobra.
+        </p>
+      </div>
+    </section>
+
+    <!-- O(N²) - Tempo Quadrático -->
+    <section class="mb-12">
+      <SectionHeader label="Classificação">
+        <ArrowRight slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O(N²) — Tempo Quadrático</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um algoritmo O(N²) executa um número de operações proporcional ao quadrado da entrada.
+        </p>
+        <p>
+          Isso significa que pequenos aumentos no tamanho dos dados causam grandes aumentos 
+          no tempo de execução.
+        </p>
+        <p>
+          Um exemplo são algoritmos simples de ordenação com comparações aninhadas.
+        </p>
+      </div>
+    </section>
+
+    <!-- Algoritmos com mesma notação -->
+    <section class="mb-12">
+      <SectionHeader label="Nuances">
+        <Clock slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Algoritmos com a mesma notação podem ter velocidades diferentes</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Dois algoritmos podem pertencer à mesma categoria Big O e ainda assim ter 
+          desempenhos diferentes na prática.
+        </p>
+        <p>
+          Por exemplo, um pode executar aproximadamente N² operações e outro pode executar 
+          aproximadamente N² / 2 operações. Ambos são classificados como O(N²).
+        </p>
+        <p>
+          Isso acontece porque a Notação Big O ignora constantes multiplicativas.
+        </p>
+      </div>
+    </section>
+
+    <!-- Por que constantes são ignoradas? -->
+    <section class="mb-12">
+      <SectionHeader label="Teoria">
+        <Infinity slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Por que constantes são ignoradas?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Big O foca no comportamento de crescimento a longo prazo. Constantes não 
+          alteram a taxa de crescimento da função.
+        </p>
+        <p>
+          Por exemplo, O(100N) e O(N²). Mesmo que o primeiro tenha um fator 100, 
+          em algum ponto ele será mais eficiente que o segundo, porque crescimento 
+          linear sempre supera crescimento quadrático quando os dados são grandes o suficiente.
+        </p>
+        <p>
+          O que importa é o tipo de crescimento, não o fator constante.
+        </p>
+      </div>
+    </section>
+
+    <!-- Big O considera o pior caso -->
+    <section class="mb-12">
+      <SectionHeader label="Análise">
+        <TriangleAlert slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Big O considera o pior caso</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Por padrão, quando classificamos um algoritmo usando Big O, estamos considerando 
+          o pior cenário possível.
+        </p>
+        <p>
+          Isso significa que estamos analisando o máximo de operações que o algoritmo 
+          pode executar.
+        </p>
+        <p>
+          Essa abordagem é importante porque nos prepara para situações extremas e 
+          ajuda na tomada de decisões estruturais.
+        </p>
+      </div>
+    </section>
+
+    <!-- Crescimento comparativo -->
+    <section class="mb-12">
+      <SectionHeader label="Comparação">
+        <Gauge slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Crescimento comparativo</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          À medida que o tamanho da entrada aumenta, o comportamento das principais 
+          notações pode ser resumido assim:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-2">
+          <li><span class="text-primary font-medium">O(1)</span> — crescimento constante</li>
+          <li><span class="text-primary font-medium">O(N)</span> — crescimento proporcional</li>
+          <li><span class="text-primary font-medium">O(N²)</span> — crescimento acelerado</li>
+        </ul>
+        <p>
+          Quanto maior o volume de dados, maior a diferença prática entre essas categorias.
+        </p>
+      </div>
+    </section>
+
   </main>
+  <Footer />
 </Layout>
