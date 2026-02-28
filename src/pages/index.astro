@@ -1,12 +1,209 @@
 ---
-import HomeLogo from '../components/HomeLogo.astro'
 import Layout from '../layouts/Layout.astro';
-import Header from "../components/Header.astro"
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
+import { GraduationCap, Binary, Database, ArrowDown, Clock, BookOpen, Map, Zap, ArrowUpDown, GitBranch, Info, Sparkles } from '@lucide/astro';
+
+const navItems = [
+  { content: "Introdução", link: "/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
+  { content: "Algoritmos", link: "/algoritmos", Icon: Binary, label: "Visualize algoritmos em ação" },
+  { content: "E. de dados", link: "/estrutura-de-dados", Icon: Database, label: "Explore estruturas de dados" },
+];
+
+const lastUpdate = {
+  title: "Página de Introdução",
+  date: "28 fev 2026",
+  description: "Uma breve introdução aos conceitos fundamentais de algoritmos e a Notação Big O, com explicações sobre eficiência computacional."
+};
+
+const overview = {
+  title: "Overview do Projeto",
+  description: "VisuDSA é uma plataforma educacional para visualizar algoritmos e estruturas de dados de forma interativa e didática. Aprenda conceitos fundamentais através de animações e exemplos práticos."
+};
+
+const guide = {
+  title: "Guia da Aplicação",
+  sections: [
+    { name: "Home", description: "Página inicial" },
+    { name: "Introdução", description: "Conceitos fundamentais" },
+    { name: "Algoritmos", description: "Visualização de algoritmos" },
+    { name: "E. de Dados", description: "Estruturas de dados" },
+  ]
+};
+
+const extras = {
+  title: "Informações Extras",
+  status: "Em desenvolvimento",
+  futureAdditions: [
+    "Visualização de algoritmos de ordenação",
+    "Estruturas de dados interativas",
+    "Mais conteúdo sobre Big O",
+  ]
+};
+
+const algorithms = [
+  { 
+    title: "Bubble Sort", 
+    description: "Algoritmo de ordenação simples que compara elementos adjacentes.",
+    icon: ArrowUpDown 
+  },
+  { 
+    title: "Quick Sort", 
+    description: "Algoritmo de ordenação eficiente que utiliza divisão e conquista.",
+    icon: GitBranch 
+  },
+  { 
+    title: "Busca Binária", 
+    description: "Método de busca em vetores ordenados com complexidade O(log n).",
+    icon: Zap 
+  },
+];
+
+const objective = {
+  title: "Objetivo",
+  description: "VisuDSA nasceu com a missão de tornar o aprendizado de algoritmos e estruturas de dados mais acessível e visual. Ver como as coisas funcionam pode te ajudar a entender. O projeto visa fornecer uma ferramenta didática para estudantes e desenvolvedores que desejam compreender melhor o funcionamento interno dos algoritmos."
+};
 ---
 
-<Layout>
-  <Header/> 
-	<HomeLogo />
+<Layout title="Home">
+  <Header />
+  <div class="flex flex-col">
+    <!-- Seção Hero: Título + Navegação (tela única) -->
+    <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 relative">
+      <h1 id="main_title" class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground text-center">
+        VisuDSA
+      </h1>
+      
+      <nav class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10" aria-label="Navegação rápida">
+        {navItems.map((item) => (
+          <a 
+            href={item.link} 
+            aria-label={item.label}
+            class="flex items-center gap-2 px-4 py-2 text-sm md:text-base text-muted-foreground hover:text-foreground border border-border hover:border-accent rounded-lg transition-all duration-300 hover:shadow-lg"
+          >
+            <item.Icon class="size-4" aria-hidden="true" />
+            <span>{item.content}</span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Indicador de Scroll -->
+      <div class="absolute bottom-6 md:bottom-8" aria-hidden="true">
+        <ArrowDown class="size-6 md:size-8 text-muted-foreground animate-bounce" />
+      </div>
+    </section>
+
+    <!-- Seção Cards -->
+    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        
+        <!-- Última Adição -->
+        <Card label="Última Adição" title={lastUpdate.title} date={lastUpdate.date}>
+          <Clock slot="icon" class="size-5" />
+          <p class="text-justify">{lastUpdate.description}</p>
+        </Card>
+
+        <!-- Overview do Projeto -->
+        <Card label="Overview" title={overview.title}>
+          <BookOpen slot="icon" class="size-5" />
+          <p class="text-justify">{overview.description}</p>
+        </Card>
+
+        <!-- Guia da Aplicação -->
+        <Card label="Guia" title={guide.title}>
+          <Map slot="icon" class="size-5" />
+          <ul class="space-y-1 guide-list">
+            {guide.sections.map((section) => (
+              <li class="flex items-center justify-between text-sm px-2 py-1.5 rounded">
+                <span class="text-primary">{section.name}</span>
+                <span class="text-muted-foreground text-xs">{section.description}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+      </div>
+    </section>
+
+    <!-- Seção Algoritmos em Destaque -->
+    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-2">Algoritmos em Destaque</h2>
+        <p class="text-muted-foreground">Explore os algoritmos mais populares</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        {algorithms.map((algo) => (
+          <article class="bg-card border border-border rounded-lg p-5 hover:border-accent transition-colors duration-300">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="p-2 bg-accent/10 rounded-lg">
+                <algo.icon class="size-5 text-primary" />
+              </div>
+              <h3 class="text-lg font-medium text-primary">{algo.title}</h3>
+            </div>
+            <p class="text-muted-foreground text-sm text-justify">{algo.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção Objetivo + Extras -->
+    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        
+        <!-- Objetivo -->
+        <div class="bg-card border border-border rounded-lg p-6 md:p-8">
+          <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4">{objective.title}</h2>
+          <p class="text-muted-foreground leading-relaxed text-justify">{objective.description}</p>
+        </div>
+
+        <!-- Informações Extras (já existente, mas preciso ajustar para não usar Card) -->
+        <Card label="Extras" title={extras.title}>
+          <Info slot="icon" class="size-5" />
+          <div class="space-y-3">
+            <div>
+              <span class="text-xs text-muted-foreground uppercase tracking-wider">Status</span>
+              <p class="text-primary font-medium">{extras.status}</p>
+            </div>
+            <div>
+              <span class="text-xs text-muted-foreground uppercase tracking-wider">Próximas adições</span>
+              <ul class="mt-1 space-y-1">
+                {extras.futureAdditions.map((item) => (
+                  <li class="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Sparkles class="size-3 text-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Card>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <Footer />
+  </div>
 </Layout>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
+
+#main_title {
+  font-family: "Bitcount Grid Double", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+}
+
+.guide-list li:nth-child(even) {
+  background-color: oklch(0.3 0.02 250);
+}
+</style>

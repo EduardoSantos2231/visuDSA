@@ -1,71 +1,95 @@
 ---
-import Logo from "../assets/logo.svg"
+import { Home, GraduationCap, Binary, Database } from '@lucide/astro';
+
+const currentPath = Astro.url.pathname;
+
 const infos = [
-  {content: "Home", link: "#"},
-  {content: "Introdução", link: "introducao"},
-  {content: "Algoritmos", link: "algoritmos"},
-  {content: "E. de dados", link: "estrutura-de-dados"},
+  { content: "Home", link: "/", Icon: Home, label: "Ir para página inicial" },
+  { content: "Introdução", link: "/introducao", Icon: GraduationCap, label: "Ir para introdução" },
+  { content: "Algoritmos", link: "/algoritmos", Icon: Binary, label: "Ir para algoritmos" },
+  { content: "E. de dados", link: "/estrutura-de-dados", Icon: Database, label: "Ir para estrutura de dados" },
 ]
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+<header class="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-dashed border-primary/30 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center" role="navigation" aria-label="Navegação principal">
     
-    <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-      <span class="size-9">
-        <Logo/>
-      </span>
-      <span class="font-bold text-slate-800 hidden sm:block">DevDocs</span>
+    <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="VisuDSA - Página inicial">
+      <span class="font-bold text-lg text-foreground">VisuDSA</span>
     </a>
 
     <button 
-      class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+      class="md:hidden p-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
       id="open_menu_btn"
       aria-expanded="false"
       aria-controls="mobile-menu"
+      aria-label="Abrir menu de navegação"
     >
       <span class="sr-only">Abrir menu</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <ul class="hidden md:flex items-center gap-8">
-      {infos.map((item) => (
-        <li>
-          <a 
-            href={item.link} 
-            class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors duration-200 relative group"
-          >
-            {item.content}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-        </li>
-      ))}
+    <ul class="hidden md:flex items-center gap-6">
+      {infos.map((item) => {
+        const isActive = currentPath === item.link || (item.link !== '/' && currentPath.startsWith(item.link));
+        return (
+          <li>
+            <a 
+              href={item.link} 
+              aria-label={item.label}
+              aria-current={isActive ? 'page' : undefined}
+              class:list={[
+                "flex items-center gap-2 text-sm font-medium transition-colors duration-200 relative group",
+                isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-accent"
+              ]}
+            >
+              <item.Icon class="size-4" aria-hidden="true" />
+              {item.content}
+              <span class:list={[
+                "absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full",
+                isActive ? "w-full" : ""
+              ]}></span>
+            </a>
+          </li>
+        );
+      })}
     </ul> 
   </nav>
 
   <div 
     id="mobile-menu" 
-    class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-100 shadow-xl overflow-hidden animate-slide-down"
+    class="hidden md:hidden absolute top-full left-0 w-full bg-background border-b border-dashed border-primary/30 shadow-xl overflow-hidden animate-slide-down"
+    role="menu"
+    aria-label="Menu mobile"
   >
-    <ul class="flex flex-col p-4 bg-white/95 backdrop-blur-sm">
-      {infos.map((item) => (
-        <li>
-          <a 
-            href={item.link} 
-            class="block py-3 px-4 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-lg transition-all"
-          >
-            {item.content}
-          </a>
-        </li>
-      ))}
+    <ul class="flex flex-col p-4 bg-background">
+      {infos.map((item) => {
+        const isActive = currentPath === item.link || (item.link !== '/' && currentPath.startsWith(item.link));
+        return (
+          <li>
+            <a 
+              href={item.link} 
+              aria-label={item.label}
+              aria-current={isActive ? 'page' : undefined}
+              role="menuitem"
+              class:list={[
+                "flex items-center gap-3 py-3 px-4 transition-all rounded-lg",
+                isActive ? "text-primary font-semibold bg-secondary" : "text-muted-foreground hover:bg-secondary hover:text-primary"
+              ]}
+            >
+              <item.Icon class="size-5" aria-hidden="true" />
+              {item.content}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </div>
 </header>
 
 <style>
-  /* Animação mínima para o menu mobile */
   @keyframes slide-down {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -92,10 +116,10 @@ const infos = [
       }
     });
 
-    // Fecha o menu ao clicar em um link (opcional, bom para UX)
     menu.addEventListener("click", (e) => {
       if ((e.target as HTMLElement).tagName === 'A') {
         menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
       }
     });
   }
