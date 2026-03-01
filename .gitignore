@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# contexto da sessão (apenas para desenvolvimento local)
+AGENTS.md
+docs/
