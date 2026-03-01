@@ -14,7 +14,7 @@ const infos = [
 <header class="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-dashed border-primary/30 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center" role="navigation" aria-label="Navegação principal">
     
-    <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="VisuDSA - Página inicial">
+    <a href="/visuDSA" class="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="VisuDSA - Página inicial">
       <span class="font-bold text-lg text-foreground">VisuDSA</span>
     </a>
 
@@ -33,7 +33,9 @@ const infos = [
 
     <ul class="hidden md:flex items-center gap-6">
       {infos.map((item) => {
-        const isActive = currentPath === item.link || (item.link !== '/' && currentPath.startsWith(item.link));
+        const isActive = item.link === '/visuDSA' 
+          ? currentPath === '/visuDSA' || currentPath === '/visuDSA/'
+          : currentPath.startsWith(item.link);
         return (
           <li>
             <a 
@@ -66,7 +68,9 @@ const infos = [
   >
     <ul class="flex flex-col p-4 bg-background">
       {infos.map((item) => {
-        const isActive = currentPath === item.link || (item.link !== '/' && currentPath.startsWith(item.link));
+        const isActive = item.link === '/visuDSA' 
+          ? currentPath === '/visuDSA' || currentPath === '/visuDSA/'
+          : currentPath.startsWith(item.link);
         return (
           <li>
             <a 
