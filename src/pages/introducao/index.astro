@@ -3,25 +3,50 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import TableOfContents from '../../components/TableOfContents.astro';
 import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert } from '@lucide/astro';
+
+const tocItems = [
+  { id: 'introducao', label: 'Introdução' },
+  { id: 'o-que-e-algoritmo', label: 'O que é um algoritmo?' },
+  { id: 'por-que-medir-eficiencia', label: 'Por que medir eficiência?' },
+  { id: 'o-que-e-notacao-big-o', label: 'O que é a Notação Big O?' },
+  { id: 'tempo-constante', label: 'O(1) — Tempo Constante' },
+  { id: 'tempo-linear', label: 'O(N) — Tempo Linear' },
+  { id: 'tempo-quadratico', label: 'O(N²) — Tempo Quadrático' },
+  { id: 'mesma-notacao', label: 'Mesma notação, velocidades diferentes' },
+  { id: 'constantes-ignoradas', label: 'Por que constantes são ignoradas?' },
+  { id: 'pior-caso', label: 'Big O considera o pior caso' },
+  { id: 'crescimento-comparativo', label: 'Crescimento comparativo' },
+  { id: 'estrutura-de-dados', label: 'Estruturas de Dados' },
+  { id: 'estrutura-de-dados-intro', label: 'O que é uma estrutura de dados?' },
+  { id: 'organizacao-desempenho', label: 'Organização impacta desempenho' },
+  { id: 'escalabilidade', label: 'Escalabilidade e carga real' },
+  { id: 'eficiencia', label: 'Estruturas de dados e eficiência' },
+  { id: 'qualidade-codigo', label: 'Impacto na qualidade do código' },
+];
 ---
 
 <Layout title="Introdução">
   <Header />
-  <main class="px-4 py-8 max-w-4xl mx-auto">
-    
-    <!-- Introdução -->
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Introdução a Algoritmos e Notação Big O</h1>
+  <div class="px-4 py-8 max-w-6xl mx-auto">
+    <div class="flex gap-12 lg:gap-16">
+      <TableOfContents items={tocItems} />
+      
+      <main class="flex-1 min-w-0 max-w-4xl">
+        
+        <!-- Introdução -->
+        <section id="introducao" class="mb-12 scroll-mt-20">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Introdução a Algoritmos e Estruturas de Dados</h1>
       <p class="text-muted-foreground text-lg text-justify leading-relaxed">
-        Entender algoritmos e sua eficiência é fundamental para qualquer desenvolvedor. 
+        Entender algoritmos e estruturas de dados é fundamental para qualquer desenvolvedor. 
         Esta seção apresenta os conceitos básicos que servirão como fundamento para o 
-        restante do conteúdo.
+        restante do conteúdo, abordando tanto algoritmos quanto a organização eficiente de dados.
       </p>
     </section>
 
     <!-- O que é um algoritmo? -->
-    <section class="mb-12">
+    <section id="o-que-e-algoritmo" class="mb-12 scroll-mt-20">
       <SectionHeader label="Conceito">
         <Cpu slot="icon" class="size-4" />
       </SectionHeader>
@@ -49,7 +74,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- Por que medir eficiência? -->
-    <section class="mb-12">
+    <section id="por-que-medir-eficiencia" class="mb-12 scroll-mt-20">
       <SectionHeader label="Desempenho">
         <Gauge slot="icon" class="size-4" />
       </SectionHeader>
@@ -71,7 +96,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- O que é a Notação Big O? -->
-    <section class="mb-12">
+    <section id="o-que-e-notacao-big-o" class="mb-12 scroll-mt-20">
       <SectionHeader label="Teoria">
         <Infinity slot="icon" class="size-4" />
       </SectionHeader>
@@ -93,7 +118,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- O(1) - Tempo Constante -->
-    <section class="mb-12">
+    <section id="tempo-constante" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
         <ArrowRight slot="icon" class="size-4" />
       </SectionHeader>
@@ -114,7 +139,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- O(N) - Tempo Linear -->
-    <section class="mb-12">
+    <section id="tempo-linear" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
         <ArrowRight slot="icon" class="size-4" />
       </SectionHeader>
@@ -134,7 +159,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- O(N²) - Tempo Quadrático -->
-    <section class="mb-12">
+    <section id="tempo-quadratico" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
         <ArrowRight slot="icon" class="size-4" />
       </SectionHeader>
@@ -154,7 +179,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- Algoritmos com mesma notação -->
-    <section class="mb-12">
+    <section id="mesma-notacao" class="mb-12 scroll-mt-20">
       <SectionHeader label="Nuances">
         <Clock slot="icon" class="size-4" />
       </SectionHeader>
@@ -175,7 +200,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- Por que constantes são ignoradas? -->
-    <section class="mb-12">
+    <section id="constantes-ignoradas" class="mb-12 scroll-mt-20">
       <SectionHeader label="Teoria">
         <Infinity slot="icon" class="size-4" />
       </SectionHeader>
@@ -197,7 +222,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- Big O considera o pior caso -->
-    <section class="mb-12">
+    <section id="pior-caso" class="mb-12 scroll-mt-20">
       <SectionHeader label="Análise">
         <TriangleAlert slot="icon" class="size-4" />
       </SectionHeader>
@@ -219,7 +244,7 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
     </section>
 
     <!-- Crescimento comparativo -->
-    <section class="mb-12">
+    <section id="crescimento-comparativo" class="mb-12 scroll-mt-20">
       <SectionHeader label="Comparação">
         <Gauge slot="icon" class="size-4" />
       </SectionHeader>
@@ -240,6 +265,113 @@ import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert 
       </div>
     </section>
 
-  </main>
+    <!-- Introdução a Estruturas de Dados -->
+    <section id="estrutura-de-dados" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Estruturas de Dados">
+        <Cpu slot="icon" class="size-4" />
+      </SectionHeader>
+    </section>
+
+    <!-- O que é uma estrutura de dados? -->
+    <section id="estrutura-de-dados-intro" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conceito">
+        <Cpu slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O que é uma estrutura de dados?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Uma estrutura de dados é a forma como os dados são organizados na memória para que 
+          possam ser acessados e manipulados de maneira eficiente.
+        </p>
+        <p>
+          Não se trata apenas de armazenar informações, mas de definir como elas serão organizadas 
+          para permitir operações como leitura, busca, inserção e remoção. A escolha da estrutura 
+          impacta diretamente o desempenho dessas operações.
+        </p>
+      </div>
+    </section>
+
+    <!-- Organização impacta desempenho -->
+    <section id="organizacao-desempenho" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Desempenho">
+        <Gauge slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Organização impacta desempenho</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A forma como os dados são organizados pode fazer seu programa rodar de forma rápida e fluida, 
+          ou se tornar lento e ineficiente.
+        </p>
+        <p>
+          Essa diferença não é pequena. Dependendo da estrutura escolhida, a performance pode variar 
+          em ordens de magnitude — ou seja, um algoritmo pode ser dezenas ou centenas de vezes mais 
+          rápido apenas por causa da organização dos dados.
+        </p>
+      </div>
+    </section>
+
+    <!-- Escalabilidade e carga real -->
+    <section id="escalabilidade" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Escalabilidade">
+        <ArrowRight slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Escalabilidade e carga real</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Quando lidamos com poucos dados, a diferença pode parecer irrelevante. Mas em cenários como 
+          aplicações que manipulam grandes volumes de informação, sistemas que processam milhares ou 
+          milhões de registros, ou aplicações web com muitos usuários simultâneos, a escolha da 
+          estrutura de dados pode determinar se o sistema continua funcionando de forma estável ou 
+          começa a falhar por não suportar a carga.
+        </p>
+        <p>
+          Em sistemas reais, desempenho não é detalhe — é requisito.
+        </p>
+      </div>
+    </section>
+
+    <!-- Estruturas de dados e eficiência -->
+    <section id="eficiencia" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Eficiência">
+        <Zap slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Estruturas de dados e eficiência</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Cada estrutura de dados possui características próprias que influenciam o custo das operações.
+        </p>
+        <p>
+          Algumas são mais rápidas para acesso direto. Outras são mais eficientes para inserções 
+          frequentes, remoções dinâmicas ou buscas ordenadas. Não existe uma estrutura "melhor" de 
+          forma absoluta. Existe a estrutura mais adequada para o problema específico.
+        </p>
+      </div>
+    </section>
+
+    <!-- Impacto na qualidade do código -->
+    <section id="qualidade-codigo" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Qualidade">
+        <GitBranch slot="icon" class="size-4" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Impacto na qualidade do código</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Compreender estruturas de dados não melhora apenas a velocidade do programa. Também permite 
+          escrever código mais previsível, reduzir complexidade desnecessária e tomar decisões 
+          arquiteturais mais sólidas.
+        </p>
+        <p>
+          Um desenvolvedor que entende as implicações de cada estrutura consegue produzir soluções 
+          mais elegantes e escaláveis.
+        </p>
+        <p>
+          Para conferir mais sobre estrutura de dados, <a href="/visuDSA/estrutura-de-dados" class="text-primary hover:underline">acesse a página de estruturas de dados</a>.
+        </p>
+      </div>
+    </section>
+
+      </main>
+    </div>
+  </div>
   <Footer />
 </Layout>
