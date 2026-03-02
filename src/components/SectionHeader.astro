@@ -6,9 +6,9 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<div class="flex items-center gap-1 text-primary mb-2">
+<div class="flex items-center gap-0.5 text-primary mb-2">
   <slot name="icon" />
   {label && (
-    <h2 class="text-sm font-semibold uppercase tracking-wider text-primary">{label}</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-wide text-primary">{label}</h2>
   )}
 </div>
