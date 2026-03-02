@@ -1,0 +1,262 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import TableOfContents from '../../components/TableOfContents.astro';
+import { List, Cpu, Search, Plus, Trash2, Table2 } from '@lucide/astro';
+
+const tocItems = [
+  { id: 'definicao', label: 'O que são Arrays?' },
+  { id: 'memoria', label: 'Como Arrays funcionam na Memória' },
+  { id: 'leitura', label: 'Leitura (Acesso por Índice)' },
+  { id: 'insercao', label: 'Inserção' },
+  { id: 'delecao', label: 'Deleção' },
+  { id: 'busca', label: 'Busca' },
+  { id: 'resumo', label: 'Resumo de Complexidades' },
+  { id: 'conclusao', label: 'Conclusão' },
+];
+---
+
+<Layout title="Array - Estrutura de Dados">
+  <Header />
+  <div class="px-4 py-8 max-w-6xl mx-auto">
+    <div class="flex gap-12 lg:gap-16">
+      <TableOfContents items={tocItems} />
+      
+      <main class="flex-1 min-w-0 max-w-4xl">
+        
+        <section class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Array</h1>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+            O array é uma das estruturas mais fundamentais da computação. Todos os programas 
+            trabalham com dados e manipulação de dados. A forma como esses dados são organizados 
+            recebe o nome de estrutura de dados.
+          </p>
+        </section>
+
+    <section id="definicao" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conceito">
+        <List slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O que são Arrays?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um array é uma coleção de elementos armazenados <span class="text-primary font-medium">de forma contígua na memória</span>, 
+          ou seja, um bloco contínuo de endereços vizinhos.
+        </p>
+        <p>
+          Quando um array é declarado:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-2">
+          <li>o sistema aloca um bloco sequencial de memória</li>
+          <li>o tamanho de cada posição depende do tipo armazenado (int, float, bool, etc.)</li>
+          <li>cada elemento ocupa exatamente um índice</li>
+        </ul>
+        <p>
+          Essa organização contígua é o que torna o array extremamente eficiente para leitura.
+        </p>
+      </div>
+    </section>
+
+    <section id="memoria" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Memória">
+        <Cpu slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Como Arrays Funcionam na Memória</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Todo array possui um endereço base, que é o endereço do primeiro elemento.
+        </p>
+        <p>
+          Para acessar qualquer posição, o computador utiliza a seguinte lógica:
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          endereço do elemento = endereço_base + (índice × tamanho_do_tipo)
+        </p>
+        <p>
+          Ou seja, ele não precisa percorrer o array. Ele simplesmente calcula o endereço 
+          exato e acessa diretamente.
+        </p>
+      </div>
+    </section>
+
+    <section id="leitura" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Acesso">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Leitura (Acesso por Índice)</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Acessar um elemento pelo índice é uma operação de <span class="text-primary font-medium">tempo constante</span>.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(1)
+        </p>
+        <p>
+          Isso significa que, independentemente do array ter 10 ou 1 milhão de elementos, 
+          o custo da operação é o mesmo. O computador sabe exatamente onde ir.
+        </p>
+      </div>
+    </section>
+
+    <section id="insercao" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Inserção">
+        <Plus slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Inserção</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Como os elementos estão em posições contíguas e não podem existir espaços entre eles, 
+          inserir um novo elemento pode exigir deslocamento de dados.
+        </p>
+        
+        <h4 class="text-primary font-medium mt-4">Inserção no Final</h4>
+        <p>
+          Se houver espaço disponível no bloco alocado, basta colocar o novo elemento na 
+          próxima posição e nenhum deslocamento é necessário.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(1)
+        </p>
+
+        <h4 class="text-primary font-medium mt-4">Inserção no Início ou no Meio</h4>
+        <p>
+          Todos os elementos posteriores precisam ser deslocados uma posição à frente 
+          e o array precisa abrir espaço para o novo item. Se o array possui N elementos, 
+          pode ser necessário mover até N elementos.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(N)
+        </p>
+      </div>
+    </section>
+
+    <section id="delecao" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Remoção">
+        <Trash2 slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Deleção</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A lógica é semelhante à inserção.
+        </p>
+
+        <h4 class="text-primary font-medium mt-4">Deleção no Final</h4>
+        <p>
+          Basta reduzir o tamanho lógico do array e nenhum deslocamento é necessário.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(1)
+        </p>
+
+        <h4 class="text-primary font-medium mt-4">Deleção no Início ou no Meio</h4>
+        <p>
+          Os elementos seguintes precisam recuar uma posição e pode ser necessário 
+          deslocar N − 1 elementos.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(N)
+        </p>
+        <p>
+          Se a remoção for no meio, em média deslocamos aproximadamente N/2 elementos, 
+          mas em análise Big O isso continua sendo O(N), pois constantes são desconsideradas.
+        </p>
+      </div>
+    </section>
+
+    <section id="busca" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Busca">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Busca</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <h4 class="text-primary font-medium">Busca Linear</h4>
+        <p>
+          Na busca linear, o array é percorrido elemento por elemento até encontrar o valor desejado.
+        </p>
+        <p>
+          No pior caso, o elemento está na última posição ou não está presente. 
+          Isso exige percorrer todos os N elementos.
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          Complexidade: O(N)
+        </p>
+        <p>
+          O desempenho da busca linear cresce proporcionalmente ao tamanho do array.
+        </p>
+      </div>
+    </section>
+
+    <section id="resumo" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Resumo">
+        <Table2 slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
+      <div class="text-muted-foreground text-sm">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-2 pr-4 text-primary font-medium">Operação</th>
+              <th class="text-left py-2 text-primary font-medium">Complexidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">Acesso por índice</td>
+              <td class="py-2 font-mono">O(1)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">Inserção no final</td>
+              <td class="py-2 font-mono">O(1)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">Inserção no início/meio</td>
+              <td class="py-2 font-mono">O(N)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">Deleção no final</td>
+              <td class="py-2 font-mono">O(1)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">Deleção no início/meio</td>
+              <td class="py-2 font-mono">O(N)</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-4">Busca linear</td>
+              <td class="py-2 font-mono">O(N)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="conclusao" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conclusão">
+        <List slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Conclusão</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Arrays são extremamente eficientes para acesso direto por índice devido à sua 
+          organização contígua na memória.
+        </p>
+        <p>
+          No entanto, essa mesma característica torna operações de inserção e remoção no 
+          início ou no meio custosas, pois exigem deslocamento de elementos.
+        </p>
+        <p>
+          Portanto:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-2">
+          <li>Se o problema exige acesso rápido por posição, arrays são uma excelente escolha</li>
+          <li>Se exige muitas inserções e remoções no meio da estrutura, pode ser necessário considerar outra abordagem</li>
+        </ul>
+      </div>
+    </section>
+
+      </main>
+    </div>
+  </div>
+  <Footer />
+</Layout>
