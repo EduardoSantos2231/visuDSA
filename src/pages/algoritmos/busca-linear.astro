@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LinearSearchVisualizer from '../../components/visualizer/LinearSearchVisualizer';
+---
+
+<Layout title="Busca Linear - Algoritmos">
+  <Header />
+  <main class="px-4 py-8 max-w-4xl mx-auto">
+    
+    <section class="mb-12">
+      <LinearSearchVisualizer client:load />
+    </section>
+
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Busca Linear</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        A busca linear é o método mais simples de procurar um elemento em um array.
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <div class="text-muted-foreground text-sm space-y-4 text-justify">
+        <p>
+          Ela funciona percorrendo os elementos <span class="text-primary font-medium">um por um</span>, 
+          do início ao fim, comparando cada valor com o que está sendo procurado. A busca termina quando:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>o elemento é encontrado</li>
+          <li>ou todos os elementos já foram verificados</li>
+        </ul>
+        <p>
+          Como não há nenhum tipo de organização ou atalho envolvido, no pior caso é necessário 
+          percorrer todos os N elementos do array.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-primary mb-4">Complexidade</h2>
+      <div class="text-muted-foreground text-sm space-y-4 text-justify">
+        <p>
+          <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">O(N)</span>
+        </p>
+        <p>
+          Isso significa que o tempo de execução cresce proporcionalmente ao tamanho da estrutura. 
+          Se o array dobrar de tamanho, o tempo de busca pode dobrar também.
+        </p>
+        <p>
+          A busca linear é simples e funciona em qualquer array, mas torna-se ineficiente quando 
+          aplicada a grandes volumes de dados.
+        </p>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
