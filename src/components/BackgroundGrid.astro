@@ -1,0 +1,23 @@
+---
+interface Props {
+  size?: string;
+  opacity?: number;
+}
+
+const { size = "40px", opacity = 0.03 } = Astro.props;
+---
+
+<div class="background-grid" style={`--grid-size: ${size}; --grid-opacity: ${opacity};`}>
+  <slot />
+</div>
+
+<style>
+.background-grid {
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(to right, oklch(1 0 0 / var(--grid-opacity)) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / var(--grid-opacity)) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: center center;
+}
+</style>

@@ -2,12 +2,137 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import Card from "../../components/Card.astro";
+import { List, Layers, MoveDown, Sparkles, Hash, Network, GitBranch, Clock } from '@lucide/astro';
 ---
 
 <Layout title="Estrutura de Dados">
   <Header />
-  <main>
-    <!-- Página de Estrutura de Dados - Em desenvolvimento -->
+  <main class="px-4 py-8 max-w-6xl mx-auto">
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Estruturas de Dados</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        Uma estrutura de dados é a forma como os dados são organizados na memória para que 
+        possam ser acessados e manipulados de maneira eficiente. Escolher a estrutura correta 
+        pode impactar significativamente o desempenho de um programa.
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-primary mb-6">Estruturas Lineares</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <a href="/visuDSA/estrutura-de-dados/array" class="block hover:no-underline">
+          <Card title="Array" label="Estrutura Linear">
+            <List slot="icon" class="size-5" />
+            <p>
+              Coleção de elementos armazenados em posições contíguas de memória.
+              Permite acesso rápido por índice, porém inserções e remoções podem ser custosas.
+            </p>
+          </Card>
+        </a>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Stack (Pilha)" label="Estrutura Linear">
+            <Layers slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Estrutura LIFO (Last In, First Out). O último elemento inserido é o primeiro 
+              a ser removido. Utilizada em chamadas de funções e desfazer operações.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Queue (Fila)" label="Estrutura Linear">
+            <MoveDown slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Estrutura FIFO (First In, First Out). O primeiro elemento inserido é o primeiro 
+              a ser removido. Utilizada em processamento de tarefas e buffers.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-primary mb-6">Estruturas Não-Lineares</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Set" label="Estrutura Não-Linear">
+            <Sparkles slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Coleção de elementos únicos sem ordem específica. Garante que não haja duplicatas 
+              e permite operações de conjunto como união e interseção.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Hash Table" label="Estrutura Não-Linear">
+            <Hash slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Estrutura que utiliza funções hash para mapear chaves a valores. Oferece 
+              inserção, busca e remoção em tempo médio constante O(1).
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Tree (Árvore)" label="Estrutura Não-Linear">
+            <GitBranch slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Estrutura hierárquica com nós conectados por arestas. Utilizada em sistemas 
+              de arquivos, bancos de dados e algoritmos de busca.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Graph (Grafo)" label="Estrutura Não-Linear">
+            <Network slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Estrutura composta por vértices e arestas que representam relações entre elementos.
+              Utilizada em redes sociais, mapas e algoritmos de caminho.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
