@@ -2,12 +2,179 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import Card from "../../components/Card.astro";
+import { Search, ArrowUpDown, Network, Recycle, Clock, Binary, GitBranch, Layers } from '@lucide/astro';
 ---
 
 <Layout title="Algoritmos">
   <Header />
-  <main>
-    <!-- Algoritmos - Em desenvolvimento -->
+  <main class="px-4 py-8 max-w-6xl mx-auto">
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Algoritmos</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        Um algoritmo é uma sequência de passos bem definidos para resolver um problema específico. 
+        A escolha do algoritmo correto pode fazer a diferença entre um programa que executa em milissegundos 
+        ou em horas. Aqui você encontrará explicações detalhadas dos principais algoritmos utilizados em ciência da computação.
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-primary mb-6">Algoritmos de Busca</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <a href="/visuDSA/algoritmos/busca-linear" class="block hover:no-underline">
+          <Card title="Busca Linear" label="Algoritmo de Busca">
+            <Search slot="icon" class="size-5" />
+            <p>
+              O algoritmo mais simples de busca, que percorre cada elemento de uma lista 
+              até encontrar o valor desejado ou verificar todos os elementos.
+            </p>
+          </Card>
+        </a>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Busca Binária" label="Algoritmo de Busca">
+            <Binary slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Algoritmo eficiente que reduz pela metade o espaço de busca a cada iteração. 
+              Requer que a lista esteja ordenada previamente.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-primary mb-6">Algoritmos de Ordenação</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Bubble Sort" label="Algoritmo de Ordenação">
+            <ArrowUpDown slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Algoritmo simples que compara elementos adjacentes e os troca se estiverem 
+              na ordem errada. Útil para fins didáticos.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Quick Sort" label="Algoritmo de Ordenação">
+            <ArrowUpDown slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Algoritmo de ordenação eficiente que utiliza a estratégia "dividir para conquistar". 
+              Um dos algoritmos mais rápidos na prática.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Merge Sort" label="Algoritmo de Ordenação">
+            <ArrowUpDown slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Algoritmo de ordenação estável que divide o array ao meio, ordena cada parte 
+              e depois mescla as partes ordenadas.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-primary mb-6">Algoritmos em Grafos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="BFS" label="Algoritmo em Grafos">
+            <Network slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Busca em Largura (Breadth-First Search). Explora todos os vizinhos de um 
+              vértice antes de passar para o próximo nível.
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="DFS" label="Algoritmo em Grafos">
+            <GitBranch slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Busca em Profundidade (Depth-First Search). Explora o máximo possível 
+              ao longo de cada ramo antes de voltar.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-primary mb-6">Algoritmos de Recursão</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Fatorial" label="Recursão">
+            <Recycle slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Problema clássico de recursão onde o fatorial de n é calculado 
+              multiplicando n pelo fatorial de (n-1).
+            </p>
+          </Card>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+            <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
+              <Clock class="size-4" />
+              <span class="text-sm font-medium">Em breve</span>
+            </div>
+          </div>
+          <Card title="Fibonacci" label="Recursão">
+            <Layers slot="icon" class="size-5 opacity-50" />
+            <p class="opacity-50">
+              Sequência onde cada número é a soma dos dois anteriores. Exemplo clássico 
+              de recursão com sobreposição de subproblemas.
+            </p>
+          </Card>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
