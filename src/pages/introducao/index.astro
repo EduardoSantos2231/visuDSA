@@ -4,7 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
-import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert } from '@lucide/astro';
+import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert, Info } from '@lucide/astro';
 
 const tocItems = [
   { id: 'introducao', label: 'Introdução' },
@@ -18,6 +18,8 @@ const tocItems = [
   { id: 'constantes-ignoradas', label: 'Por que constantes são ignoradas?' },
   { id: 'pior-caso', label: 'Big O considera o pior caso' },
   { id: 'crescimento-comparativo', label: 'Crescimento comparativo' },
+  { id: 'tempo-logaritmico', label: 'O(log n) — Tempo Logarítmico' },
+  { id: 'outras-notacoes', label: 'Outras notações Big O' },
   { id: 'estrutura-de-dados', label: 'Estruturas de Dados' },
   { id: 'estrutura-de-dados-intro', label: 'O que é uma estrutura de dados?' },
   { id: 'organizacao-desempenho', label: 'Organização impacta desempenho' },
@@ -48,7 +50,7 @@ const tocItems = [
     <!-- O que é um algoritmo? -->
     <section id="o-que-e-algoritmo" class="mb-12 scroll-mt-20">
       <SectionHeader label="Conceito">
-        <Cpu slot="icon" class="size-4" />
+        <Cpu slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O que é um algoritmo?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -76,7 +78,7 @@ const tocItems = [
     <!-- Por que medir eficiência? -->
     <section id="por-que-medir-eficiencia" class="mb-12 scroll-mt-20">
       <SectionHeader label="Desempenho">
-        <Gauge slot="icon" class="size-4" />
+        <Gauge slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Por que medir eficiência?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -98,7 +100,7 @@ const tocItems = [
     <!-- O que é a Notação Big O? -->
     <section id="o-que-e-notacao-big-o" class="mb-12 scroll-mt-20">
       <SectionHeader label="Teoria">
-        <Infinity slot="icon" class="size-4" />
+        <Infinity slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O que é a Notação Big O?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -120,7 +122,7 @@ const tocItems = [
     <!-- O(1) - Tempo Constante -->
     <section id="tempo-constante" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
-        <ArrowRight slot="icon" class="size-4" />
+        <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O(1) — Tempo Constante</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -141,7 +143,7 @@ const tocItems = [
     <!-- O(N) - Tempo Linear -->
     <section id="tempo-linear" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
-        <ArrowRight slot="icon" class="size-4" />
+        <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O(N) — Tempo Linear</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -161,7 +163,7 @@ const tocItems = [
     <!-- O(N²) - Tempo Quadrático -->
     <section id="tempo-quadratico" class="mb-12 scroll-mt-20">
       <SectionHeader label="Classificação">
-        <ArrowRight slot="icon" class="size-4" />
+        <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O(N²) — Tempo Quadrático</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -181,7 +183,7 @@ const tocItems = [
     <!-- Algoritmos com mesma notação -->
     <section id="mesma-notacao" class="mb-12 scroll-mt-20">
       <SectionHeader label="Nuances">
-        <Clock slot="icon" class="size-4" />
+        <Clock slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Algoritmos com a mesma notação podem ter velocidades diferentes</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -202,7 +204,7 @@ const tocItems = [
     <!-- Por que constantes são ignoradas? -->
     <section id="constantes-ignoradas" class="mb-12 scroll-mt-20">
       <SectionHeader label="Teoria">
-        <Infinity slot="icon" class="size-4" />
+        <Infinity slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Por que constantes são ignoradas?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -224,7 +226,7 @@ const tocItems = [
     <!-- Big O considera o pior caso -->
     <section id="pior-caso" class="mb-12 scroll-mt-20">
       <SectionHeader label="Análise">
-        <TriangleAlert slot="icon" class="size-4" />
+        <TriangleAlert slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Big O considera o pior caso</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -246,7 +248,7 @@ const tocItems = [
     <!-- Crescimento comparativo -->
     <section id="crescimento-comparativo" class="mb-12 scroll-mt-20">
       <SectionHeader label="Comparação">
-        <Gauge slot="icon" class="size-4" />
+        <Gauge slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Crescimento comparativo</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -265,17 +267,64 @@ const tocItems = [
       </div>
     </section>
 
+    <!-- O(log n) - Tempo Logarítmico -->
+    <section id="tempo-logaritmico" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Classificação">
+        <ArrowRight slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">O(log n) — Tempo Logarítmico</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Um algoritmo O(log n) reduz pela metade o problema a cada etapa.
+          O tempo de execução cresce muito lentamente conforme a entrada aumenta.
+        </p>
+        <p>
+          Um exemplo clássico é a busca binária em uma lista ordenada.
+          A cada comparação, o algoritmo descarta metade dos elementos restantes.
+        </p>
+        <p>
+          Essa eficiência faz algoritmos logarítmicos extremamente poderosos
+          para grandes volumes de dados.
+        </p>
+      </div>
+    </section>
+
+    <!-- Outras notações Big O -->
+    <section id="outras-notacoes" class="mb-12 scroll-mt-20 bg-secondary/30 border-l-4 border-accent rounded-r-lg p-5">
+      <div class="flex items-center gap-2 text-accent mb-3">
+        <Info class="size-5" />
+        <span class="text-sm font-semibold uppercase tracking-wider">Nota</span>
+      </div>
+      <h3 class="text-xl font-medium text-primary mb-3">Outras notações Big O</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          As classificações apresentadas nesta página (O(1), O(N), O(N²), O(log n)) são as mais comuns,
+          porém existem outras notações importantes.
+        </p>
+        <p>
+          Entre elas estão: O(n log n) — tempo linearítmico, O(2^n) — tempo exponencial,
+          e O(n!) — tempo fatorial.
+        </p>
+        <p>
+          Este material apresenta apenas uma introdução. Para compreensão completa,
+          recomenda-se aprofundamento com fontes complementares.
+        </p>
+      </div>
+    </section>
+
     <!-- Introdução a Estruturas de Dados -->
     <section id="estrutura-de-dados" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Estruturas de Dados">
-        <Cpu slot="icon" class="size-4" />
-      </SectionHeader>
+      <h2 class="text-2xl font-bold text-primary mb-4">Introdução à Estrutura de Dados</h2>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        Todos os programas trabalham com dados e manipulação de dados.
+        A forma como esses dados são organizados recebe o nome de estrutura de dados.
+      </p>
     </section>
 
     <!-- O que é uma estrutura de dados? -->
     <section id="estrutura-de-dados-intro" class="mb-12 scroll-mt-20">
       <SectionHeader label="Conceito">
-        <Cpu slot="icon" class="size-4" />
+        <Cpu slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">O que é uma estrutura de dados?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -294,7 +343,7 @@ const tocItems = [
     <!-- Organização impacta desempenho -->
     <section id="organizacao-desempenho" class="mb-12 scroll-mt-20">
       <SectionHeader label="Desempenho">
-        <Gauge slot="icon" class="size-4" />
+        <Gauge slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Organização impacta desempenho</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -313,7 +362,7 @@ const tocItems = [
     <!-- Escalabilidade e carga real -->
     <section id="escalabilidade" class="mb-12 scroll-mt-20">
       <SectionHeader label="Escalabilidade">
-        <ArrowRight slot="icon" class="size-4" />
+        <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Escalabilidade e carga real</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -333,7 +382,7 @@ const tocItems = [
     <!-- Estruturas de dados e eficiência -->
     <section id="eficiencia" class="mb-12 scroll-mt-20">
       <SectionHeader label="Eficiência">
-        <Zap slot="icon" class="size-4" />
+        <Zap slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Estruturas de dados e eficiência</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -351,7 +400,7 @@ const tocItems = [
     <!-- Impacto na qualidade do código -->
     <section id="qualidade-codigo" class="mb-12 scroll-mt-20">
       <SectionHeader label="Qualidade">
-        <GitBranch slot="icon" class="size-4" />
+        <GitBranch slot="icon" class="size-3" />
       </SectionHeader>
       <h3 class="text-xl font-medium text-primary mb-3">Impacto na qualidade do código</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
@@ -364,8 +413,10 @@ const tocItems = [
           Um desenvolvedor que entende as implicações de cada estrutura consegue produzir soluções 
           mais elegantes e escaláveis.
         </p>
-        <p>
-          Para conferir mais sobre estrutura de dados, <a href="/visuDSA/estrutura-de-dados" class="text-primary hover:underline">acesse a página de estruturas de dados</a>.
+      </div>
+      <div class="mt-4 bg-secondary/30 border-l-4 border-accent rounded-r-lg p-4">
+        <p class="text-muted-foreground text-sm text-justify">
+          Para conferir mais sobre estrutura de dados, <a href="/visuDSA/estrutura-de-dados" class="text-primary hover:underline font-medium">acesse a página de estruturas de dados</a>.
         </p>
       </div>
     </section>
