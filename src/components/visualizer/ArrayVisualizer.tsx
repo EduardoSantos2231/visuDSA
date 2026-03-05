@@ -9,6 +9,8 @@ interface ArrayVisualizerProps {
 
 const COLORS = {
   default: '#6b7280',
+  range: '#3b82f6',
+  discarded: '#6b7280',
   comparing: '#f59e0b',
   found: '#22c55e',
   'not-found': '#ef4444',
@@ -51,11 +53,13 @@ export default function ArrayVisualizer({ elements, currentIndex, targetValue }:
       const y = height - 60 - boxHeight;
 
       let color = COLORS[element.state];
+      let opacity = 1;
       
-      if (element.state === 'default' && index <= currentIndex) {
-        color = COLORS['comparing'];
+      if (element.state === 'discarded') {
+        opacity = 0.15;
       }
       
+      ctx.globalAlpha = opacity;
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.roundRect(x, y, boxWidth, boxHeight, 6);
@@ -75,6 +79,8 @@ export default function ArrayVisualizer({ elements, currentIndex, targetValue }:
       ctx.font = '11px Inter, system-ui, sans-serif';
       ctx.textBaseline = 'alphabetic';
       ctx.fillText(`[${index}]`, x + boxWidth / 2, height - 18);
+      
+      ctx.globalAlpha = 1;
     });
 
     if (targetValue !== null) {

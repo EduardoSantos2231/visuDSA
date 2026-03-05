@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import BinarySearchVisualizer from '../../components/visualizer/BinarySearchVisualizer';
+import { Search } from '@lucide/astro';
+---
+
+<Layout title="Busca Binária - Algoritmos">
+  <Header />
+  <main class="px-4 py-8 max-w-4xl mx-auto">
+    
+    <section class="mb-12">
+      <BinarySearchVisualizer client:load />
+    </section>
+
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Busca Binária</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        A <span class="text-primary font-medium">busca binária</span> é um algoritmo utilizado para encontrar elementos de forma extremamente eficiente em <span class="text-primary font-medium">arrays ordenados</span>.
+      </p>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+        Diferente da busca linear, que percorre os elementos um a um, a busca binária utiliza a <span class="text-primary font-medium">ordem dos dados</span> para reduzir drasticamente a quantidade de comparações necessárias.
+      </p>
+    </section>
+
+    <section class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conceito">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h2 class="text-xl font-semibold text-primary mb-4">Como funciona</h2>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A ideia central da busca binária é simples: <span class="text-primary font-medium">sempre olhar para o elemento do meio da estrutura</span>.
+        </p>
+        <p>
+          A cada passo:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 ml-2">
+          <li>Verificamos o valor do elemento central</li>
+          <li>Se ele for o valor procurado, a busca termina</li>
+          <li>Se o valor procurado for <span class="text-primary font-medium">menor</span>, continuamos a busca apenas na metade esquerda</li>
+          <li>Se for <span class="text-primary font-medium">maior</span>, continuamos apenas na metade direita</li>
+        </ol>
+        <p>
+          Como o array está ordenado, metade dos elementos pode ser descartada imediatamente. Em outras palavras, <span class="text-primary font-medium">a cada iteração da busca binária o número de possibilidades é reduzido pela metade</span>.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12 scroll-mt-20">
+      <SectionHeader label="Exemplo">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h2 class="text-xl font-semibold text-primary mb-4">Exemplo</h2>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Considere o seguinte array ordenado:
+        </p>
+        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto text-center">[10, 22, 33, 44, 55, 66, 77]</pre>
+        <p>
+          Se estivermos procurando o valor <span class="text-primary font-medium">44</span>, primeiro verificamos o elemento central.
+        </p>
+        <p>
+          Caso ele não seja o valor desejado, sabemos exatamente <span class="text-primary font-medium">em qual metade do array devemos continuar procurando</span>, descartando todos os outros elementos.
+        </p>
+        <p>
+          Esse processo continua até que o valor seja encontrado ou não restem mais possibilidades.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12 scroll-mt-20">
+      <SectionHeader label="Análise">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h2 class="text-xl font-semibold text-primary mb-4">Número de passos</h2>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A grande vantagem da busca binária aparece quando analisamos <span class="text-primary font-medium">quantos passos são necessários para encontrar um valor</span>.
+        </p>
+        <p>
+          A cada iteração, o número de elementos considerados é reduzido pela metade. Isso significa que o número de passos cresce <span class="text-primary font-medium">muito lentamente</span>, mesmo quando o array aumenta bastante de tamanho.
+        </p>
+        <p>
+          Por exemplo:
+        </p>
+        <table class="w-full border-collapse mt-4">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-2 pr-4 text-primary font-medium">Número de elementos</th>
+              <th class="text-left py-2 text-primary font-medium">Máximo de passos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">3</td>
+              <td class="py-2 font-mono">2</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">8</td>
+              <td class="py-2 font-mono">3</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">16</td>
+              <td class="py-2 font-mono">4</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">32</td>
+              <td class="py-2 font-mono">5</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-4">1.024</td>
+              <td class="py-2 font-mono">10</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="mt-4">
+          Observe que <span class="text-primary font-medium">dobrar o tamanho da estrutura adiciona apenas um passo extra na busca</span>.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12 scroll-mt-20">
+      <SectionHeader label="Análise">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h2 class="text-xl font-semibold text-primary mb-4">Complexidade</h2>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A complexidade da busca binária é:
+        </p>
+        <p class="font-mono text-lg bg-secondary px-3 py-2 rounded-lg text-center text-primary">
+          O(log N)
+        </p>
+        <p>
+          Isso significa que o número de passos cresce de forma <span class="text-primary font-medium">logarítmica</span> em relação ao tamanho da estrutura.
+        </p>
+        <p>
+          Na prática, isso torna a busca binária extremamente eficiente para grandes volumes de dados.
+        </p>
+        <p class="text-primary font-medium mt-4">
+          Requisito fundamental: o array deve estar ordenado!
+        </p>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
