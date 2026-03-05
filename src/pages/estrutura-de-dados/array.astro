@@ -4,7 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
-import { List, Cpu, Search, Plus, Trash2, Table2 } from '@lucide/astro';
+import { List, Cpu, Search, Plus, Trash2, Table2, ListOrdered } from '@lucide/astro';
 
 const tocItems = [
   { id: 'definicao', label: 'O que são Arrays?' },
@@ -14,7 +14,11 @@ const tocItems = [
   { id: 'delecao', label: 'Deleção' },
   { id: 'busca', label: 'Busca' },
   { id: 'resumo', label: 'Resumo de Complexidades' },
-  { id: 'conclusao', label: 'Conclusão' },
+  { id: 'arrays-ordenados', label: 'Arrays Ordenados' },
+  { id: 'definicao-ordenados', label: 'O que são Arrays Ordenados?' },
+  { id: 'leitura-ordenado', label: 'Leitura em Array Ordenado' },
+  { id: 'insercao-ordenado', label: 'Inserção em Array Ordenado' },
+  { id: 'por-que-ordenado', label: 'Por que usar Arrays Ordenados?' },
 ];
 ---
 
@@ -29,9 +33,13 @@ const tocItems = [
         <section class="mb-12">
           <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Array</h1>
           <p class="text-muted-foreground text-lg text-justify leading-relaxed">
-            O array é uma das estruturas mais fundamentais da computação. Todos os programas 
-            trabalham com dados e manipulação de dados. A forma como esses dados são organizados 
-            recebe o nome de estrutura de dados.
+            Um array é uma estrutura de dados que armazena elementos em posições contíguas de memória, permitindo acesso direto a qualquer índice.
+          </p>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+            Nesta seção estamos tratando de arrays em seu modelo conceitual básico, onde os elementos ocupam posições consecutivas na memória. Dependendo da linguagem ou implementação, arrays podem ter tamanho fixo (arrays estáticos) ou capacidade de redimensionamento (arrays dinâmicos).
+          </p>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+            Independentemente disso, a forma como os elementos são armazenados em memória é a mesma: cada posição do array ocupa um espaço sequencial e pode ser acessada diretamente por meio de um índice.
           </p>
         </section>
 
@@ -231,26 +239,116 @@ const tocItems = [
       </div>
     </section>
 
-    <section id="conclusao" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conclusão">
-        <List slot="icon" class="size-3" />
+    <section class="mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Arrays Ordenados</h1>
+      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        Um <span class="text-primary font-medium">array ordenado</span> é simplesmente um array em que os elementos são mantidos em ordem — normalmente crescente ou decrescente. A principal motivação para manter um array ordenado é <span class="text-primary font-medium">facilitar e acelerar operações de busca</span>, já que a posição relativa dos elementos passa a fornecer informações úteis durante a procura.
+      </p>
+    </section>
+
+    <section id="definicao-ordenados" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conceito">
+        <ListOrdered slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Conclusão</h3>
+      <h3 class="text-xl font-medium text-primary mb-3">O que são Arrays Ordenados?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
-          Arrays são extremamente eficientes para acesso direto por índice devido à sua 
-          organização contígua na memória.
+          Um <span class="text-primary font-medium">array ordenado</span> é simplesmente um array em que os elementos são mantidos em ordem — normalmente crescente ou decrescente.
         </p>
         <p>
-          No entanto, essa mesma característica torna operações de inserção e remoção no 
-          início ou no meio custosas, pois exigem deslocamento de elementos.
+          A principal motivação para manter um array ordenado é <span class="text-primary font-medium">facilitar e acelerar operações de busca</span>, já que a posição relativa dos elementos passa a fornecer informações úteis durante a procura.
+        </p>
+      </div>
+    </section>
+
+    <section id="leitura-ordenado" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Leitura">
+        <Search slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Leitura em um Array Ordenado</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Considere o seguinte array:
+        </p>
+        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>const array = [10, 33, 44, 55]</code></pre>
+        <p>
+          Suponha que queremos encontrar o valor <span class="text-primary font-medium">22</span>.
         </p>
         <p>
-          Portanto:
+          Ao analisar o primeiro elemento (10), sabemos que 22 só pode estar <span class="text-primary font-medium">à direita</span>, pois os elementos estão ordenados.
+        </p>
+        <p>
+          Quando verificamos o próximo valor (33), percebemos que ele já é <span class="text-primary font-medium">maior que 22</span>. Como o array está ordenado, isso significa que <span class="text-primary font-medium">22 não pode existir na estrutura</span>, e a busca pode ser interrompida imediatamente.
+        </p>
+        <p>
+          Essa propriedade permite <span class="text-primary font-medium">encerrar buscas mais cedo</span>, economizando operações em comparação com um array não ordenado.
+        </p>
+        <p>
+          Mesmo assim, utilizando busca sequencial, a complexidade ainda é:
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          O(N)
+        </p>
+      </div>
+    </section>
+
+    <section id="insercao-ordenado" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Inserção">
+        <Plus slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Inserção</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          A principal desvantagem de arrays ordenados aparece durante a inserção.
+        </p>
+        <p>
+          Para manter a ordenação, o novo elemento precisa ser posto <span class="text-primary font-medium">na posição correta</span>. Isso normalmente envolve duas etapas:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 ml-2">
+          <li>Encontrar o ponto onde o elemento deve ser inserido</li>
+          <li>Deslocar os elementos seguintes para abrir espaço</li>
+        </ol>
+        <p>
+          Por exemplo, ao inserir o valor <span class="text-primary font-medium">22</span> no array:
+        </p>
+        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>[10, 33, 44, 55]</code></pre>
+        <p>
+          O resultado precisa ser:
+        </p>
+        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>[10, 22, 33, 44, 55]</code></pre>
+        <p>
+          Para isso, os elementos <span class="text-primary font-medium">33, 44 e 55</span> precisam ser deslocados uma posição à frente.
+        </p>
+        <p>
+          Devido a esse deslocamento, a complexidade da inserção continua sendo:
+        </p>
+        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+          O(N)
+        </p>
+      </div>
+    </section>
+
+    <section id="por-que-ordenado" class="mb-12 scroll-mt-20">
+      <SectionHeader label="Conceito">
+        <ListOrdered slot="icon" class="size-3" />
+      </SectionHeader>
+      <h3 class="text-xl font-medium text-primary mb-3">Por que usar Arrays Ordenados?</h3>
+      <div class="text-muted-foreground text-sm space-y-3 text-justify">
+        <p>
+          Apesar do custo de inserção, arrays ordenados oferecem uma vantagem extremamente importante: <span class="text-primary font-medium">possibilitam buscas muito mais eficientes</span>.
+        </p>
+        <p>
+          Quando os dados estão ordenados, é possível utilizar <span class="text-primary font-medium">busca binária</span>, um algoritmo que reduz drasticamente o número de comparações necessárias para encontrar um elemento.
+        </p>
+        <p>
+          Enquanto a busca linear possui complexidade <span class="text-primary font-medium">O(N)</span>, a busca binária possui complexidade <span class="text-primary font-medium">O(log N)</span>, tornando-se muito mais eficiente para grandes volumes de dados.
+        </p>
+        <p>
+          Por isso, arrays ordenados são especialmente úteis em cenários onde:
         </p>
         <ul class="list-disc list-inside space-y-2 ml-2">
-          <li>Se o problema exige acesso rápido por posição, arrays são uma excelente escolha</li>
-          <li>Se exige muitas inserções e remoções no meio da estrutura, pode ser necessário considerar outra abordagem</li>
+          <li>buscas são frequentes</li>
+          <li>inserções são relativamente raras</li>
         </ul>
       </div>
     </section>
