@@ -8,7 +8,7 @@ interface Props {
 const { title, label, date } = Astro.props;
 ---
 
-<article class="bg-card border border-border rounded-lg p-5 hover:border-accent transition-colors duration-300">
+<article class="bg-card border border-border rounded-lg p-5 hover:border-accent transition-colors duration-300 h-full">
   {label && (
     <div class="flex items-center gap-1 text-primary mb-2">
       <slot name="icon" />
