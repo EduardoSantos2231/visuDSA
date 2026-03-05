@@ -1,4 +1,4 @@
-export type ElementState = 'default' | 'comparing' | 'found' | 'not-found';
+export type ElementState = 'default' | 'range' | 'discarded' | 'comparing' | 'found' | 'not-found';
 
 export interface ArrayElement {
   value: number;
@@ -9,6 +9,8 @@ export interface AnimationStep {
   index: number;
   state: ElementState;
   description: string;
+  left?: number;
+  right?: number;
 }
 
 export interface VisualizerConfig {
