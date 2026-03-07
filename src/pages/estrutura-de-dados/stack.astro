@@ -2,17 +2,244 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import TableOfContents from '../../components/TableOfContents.astro';
+import { Layers, Settings2, ArrowDown, ArrowUp, Eye, Search, ListOrdered } from '@lucide/astro';
+
+const tocItems = [
+  { id: 'definicao', label: 'O que é uma Stack?' },
+  { id: 'funcionamento', label: 'Funcionamento' },
+  { id: 'insercao', label: 'Inserção (Push)' },
+  { id: 'remocao', label: 'Remoção (Pop)' },
+  { id: 'leitura', label: 'Leitura (Peek)' },
+  { id: 'busca', label: 'Busca' },
+  { id: 'resumo', label: 'Resumo de Complexidades' },
+];
 ---
 
 <Layout title="Stack - Estrutura de Dados">
   <Header />
-  <main class="px-4 py-8 max-w-4xl mx-auto">
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Stack (Pilha)</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
-        Esta página está em desenvolvimento. Em breve, haverá conteúdo sobre pilhas.
-      </p>
-    </section>
-  </main>
+  <div class="px-4 py-8 max-w-6xl mx-auto">
+    <div class="flex gap-12 lg:gap-16">
+      <TableOfContents items={tocItems} />
+      
+      <main class="flex-1 min-w-0 max-w-4xl">
+        
+        <section class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Stack</h1>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+            Uma <span class="text-primary font-medium">stack</span> (pilha) é uma estrutura de dados que organiza os elementos seguindo uma regra simples:
+          </p>
+          <p class="text-primary font-mono text-lg bg-secondary px-4 py-2 rounded-lg mt-4 text-center">
+            LIFO — Last In, First Out
+          </p>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+            O último elemento a entrar é o primeiro a sair. Todas as operações acontecem apenas no topo da pilha.
+          </p>
+        </section>
+
+        <section id="definicao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Conceito">
+            <Layers slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">O que é uma Stack?</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Uma <span class="text-primary font-medium">stack</span> (pilha) é uma estrutura de dados que organiza os elementos seguindo uma regra simples:
+            </p>
+            <p class="font-mono text-lg bg-secondary px-3 py-1 rounded text-primary text-center">
+              LIFO — Last In, First Out
+            </p>
+            <p>
+              Uma boa analogia é uma pilha de pratos. Quando colocamos um prato novo, ele vai para o topo da pilha. Quando retiramos um prato, também pegamos o que está no topo.
+            </p>
+            <p>
+              Ou seja, <span class="text-primary font-medium">todas as operações acontecem apenas no topo da pilha</span>.
+            </p>
+            <p>
+              Embora stacks frequentemente sejam implementadas usando <span class="text-primary font-medium">arrays</span>, o mais importante não é a estrutura subjacente, mas <span class="text-primary font-medium">as regras de acesso aos dados</span>.
+            </p>
+          </div>
+        </section>
+
+        <section id="funcionamento" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Operações">
+            <Settings2 slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Funcionamento</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Em uma stack existem apenas duas operações principais:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">push</span> → inserir um elemento no topo</li>
+              <li><span class="text-primary font-medium">pop</span> → remover o elemento do topo</li>
+            </ul>
+            <p class="mt-4">
+              Também é comum existir uma operação de leitura:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">peek</span> → visualizar o elemento do topo sem removê-lo</li>
+            </ul>
+            <p class="mt-4">
+              Essas restrições tornam a estrutura simples e eficiente.
+            </p>
+          </div>
+        </section>
+
+        <section id="insercao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Inserção">
+            <ArrowDown slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Push (Inserção)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Inserir um elemento em uma stack significa colocá-lo <span class="text-primary font-medium">no topo da pilha</span>.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
+[10, 20, 30]
+            </div>
+            <p class="mt-4">
+              Após um <span class="text-primary font-mono">push(40)</span>:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
+[10, 20, 30, 40]
+            </div>
+            <p class="mt-4">
+              Nenhum elemento precisa ser deslocado, pois sempre inserimos no final da estrutura.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="remocao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Remoção">
+            <ArrowUp slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Pop (Remoção)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A remoção também ocorre <span class="text-primary font-medium">apenas no topo da stack</span>.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
+[10, 20, 30, 40]
+            </div>
+            <p class="mt-4">
+              Após um <span class="text-primary font-mono">pop()</span>:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
+[10, 20, 30]
+            </div>
+            <p class="mt-4">
+              O último elemento é removido diretamente, sem necessidade de mover outros elementos.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="leitura" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Leitura">
+            <Eye slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Peek (Leitura do topo)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A operação <span class="text-primary font-medium">peek</span> permite visualizar o elemento que está no topo da pilha sem removê-lo.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
+[10, 20, 30]
+            </div>
+            <p class="mt-4">
+              <span class="text-primary font-mono">peek()</span> retorna:
+            </p>
+            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary text-center">
+30
+            </div>
+            <p class="mt-4">
+              Como o acesso é direto ao topo da estrutura:
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="busca" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Busca">
+            <Search slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Busca</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Stacks <span class="text-primary font-medium">não são projetadas para busca eficiente</span>.
+            </p>
+            <p>
+              Se for necessário procurar um elemento dentro da pilha, é preciso percorrer os elementos um a um, normalmente do topo até a base.
+            </p>
+            <p>
+              No pior caso, todos os elementos precisam ser verificados.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(N)</span>
+            </p>
+            <p class="mt-4">
+              Por esse motivo, stacks são utilizadas em cenários onde o acesso ocorre <span class="text-primary font-medium">sempre no topo</span>, e não quando é necessário localizar elementos no meio da estrutura.
+            </p>
+          </div>
+        </section>
+
+        <section id="resumo" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Resumo">
+            <ListOrdered slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
+          <div class="text-muted-foreground text-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="py-3 px-4 font-semibold text-primary">Operação</th>
+                    <th class="py-3 px-4 font-semibold text-primary">Complexidade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Push (inserção)</td>
+                    <td class="py-3 px-4 font-mono">O(1)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Pop (remoção)</td>
+                    <td class="py-3 px-4 font-mono">O(1)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Peek (leitura do topo)</td>
+                    <td class="py-3 px-4 font-mono">O(1)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">Busca</td>
+                    <td class="py-3 px-4 font-mono">O(N)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
   <Footer />
 </Layout>
