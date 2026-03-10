@@ -2,50 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Card from '../components/Card.astro';
-import { GraduationCap, Binary, Database, ArrowDown, Clock, BookOpen, Map, Info, Sparkles } from '@lucide/astro';
+import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search } from '@lucide/astro';
 
 const navItems = [
   { content: "Introdução", link: "/visuDSA/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
   { content: "Algoritmos", link: "/visuDSA/algoritmos", Icon: Binary, label: "Visualize algoritmos em ação" },
   { content: "E. de dados", link: "/visuDSA/estrutura-de-dados", Icon: Database, label: "Explore estruturas de dados" },
 ];
-
-const lastUpdate = {
-  title: "Visualização Busca Binária",
-  date: "04 mar 2026",
-  description: "Visualização do algoritmo de busca binária de maneira animada com array ordenado automaticamente"
-};
-
-const overview = {
-  title: "Overview do Projeto",
-  description: "VisuDSA é uma plataforma educacional para visualizar algoritmos e estruturas de dados de forma interativa e didática. Aprenda conceitos fundamentais através de animações e exemplos práticos."
-};
-
-const guide = {
-  title: "Guia da Aplicação",
-  sections: [
-    { name: "Home", description: "Página inicial" },
-    { name: "Introdução", description: "Conceitos fundamentais" },
-    { name: "Algoritmos", description: "Visualização de algoritmos" },
-    { name: "E. de Dados", description: "Estruturas de dados" },
-  ]
-};
-
-const extras = {
-  title: "Informações Extras",
-  status: "Em desenvolvimento",
-  futureAdditions: [
-    "Estruturas de dados interativas (Stack, Queue, Tree, Graph)",
-    "Algoritmos de ordenação",
-    "Mais conteúdo sobre Big O e estruturas",
-  ]
-};
-
-const objective = {
-  title: "Objetivo",
-  description: "VisuDSA nasceu com a missão de tornar o aprendizado de algoritmos e estruturas de dados mais acessível e visual. Ver como as coisas funcionam pode te ajudar a entender. O projeto visa fornecer uma ferramenta didática para estudantes e desenvolvedores que desejam compreender melhor o funcionamento interno dos algoritmos."
-};
 ---
 
 <Layout title="Home">
@@ -76,96 +39,60 @@ const objective = {
       </div>
     </section>
 
-    <!-- Seção Cards -->
-    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-        
-        <!-- Última Adição -->
-        <Card label="Última Adição" title={lastUpdate.title} date={lastUpdate.date}>
-          <Clock slot="icon" class="size-5" />
-          <p class="text-justify">{lastUpdate.description}</p>
-        </Card>
-
-        <!-- Overview do Projeto -->
-        <Card label="Overview" title={overview.title}>
-          <BookOpen slot="icon" class="size-5" />
-          <p class="text-justify">{overview.description}</p>
-        </Card>
-
-        <!-- Guia da Aplicação -->
-        <Card label="Guia" title={guide.title}>
-          <Map slot="icon" class="size-5" />
-          <ul class="space-y-1 guide-list">
-            {guide.sections.map((section) => (
-              <li class="flex items-center justify-between text-sm px-2 py-1.5 rounded">
-                <span class="text-primary">{section.name}</span>
-                <span class="text-muted-foreground text-xs">{section.description}</span>
-              </li>
-            ))}
-          </ul>
-        </Card>
-
+    <!-- Seção: Por que estudar algoritmos? -->
+    <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
+      <div class="scroll-content slide-left">
+        <h2 class="section-title">Por que estudar algoritmos?</h2>
+        <p>
+          Algoritmos são a base de praticamente tudo o que acontece em software. Sempre que um programa precisa buscar dados, ordenar informações ou processar grandes volumes de entrada, existe um algoritmo por trás tomando essas decisões.
+        </p>
+        <p>
+          Entender algoritmos não é apenas um exercício acadêmico. Na prática, esse conhecimento permite escrever programas <strong>mais eficientes, mais escaláveis e mais previsíveis</strong>. A diferença entre duas soluções para o mesmo problema pode significar um sistema que responde instantaneamente ou um sistema que se torna lento à medida que cresce.
+        </p>
+        <p>
+          Além disso, algoritmos e estruturas de dados são um dos temas mais cobrados em <strong>entrevistas técnicas de engenharia de software</strong>. Muitas empresas utilizam esses problemas para avaliar raciocínio lógico, capacidade de resolução de problemas e domínio dos fundamentos da computação.
+        </p>
+        <p>
+          Dominar esses conceitos não apenas melhora sua capacidade de resolver problemas, mas também fortalece sua base como desenvolvedor.
+        </p>
       </div>
     </section>
 
-    {/* 
-    <!-- Seção Algoritmos em Destaque -->
-    <!-- ATIVAR QUANDO IMPLEMENTAR ALGORITMOS 
-    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-2">Algoritmos em Destaque</h2>
-        <p class="text-muted-foreground">Explore os algoritmos mais populares</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-        {algorithms.map((algo) => (
-          <article class="bg-card border border-border rounded-lg p-5 hover:border-accent transition-colors duration-300">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="p-2 bg-accent/10 rounded-lg">
-                <algo.icon class="size-5 text-primary" />
-              </div>
-              <h3 class="text-lg font-medium text-primary">{algo.title}</h3>
-            </div>
-            <p class="text-muted-foreground text-sm text-justify">{algo.description}</p>
-          </article>
-        ))}
+    <!-- Seção: Para que serve esta aplicação? -->
+    <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
+      <div class="scroll-content slide-right">
+        <h2 class="section-title">Para que serve esta aplicação?</h2>
+        <p>
+          Esta aplicação foi criada para tornar o estudo de algoritmos <strong>mais visual e intuitivo</strong>.
+        </p>
+        <p>Aqui você poderá:</p>
+        <ul class="feature-list">
+          <li><Eye class="feature-icon" /> visualizar o funcionamento de algoritmos passo a passo</li>
+          <li><Brain class="feature-icon" /> entender como estruturas de dados se comportam internamente</li>
+          <li><Zap class="feature-icon" /> testar operações e observar como elas afetam a complexidade do algoritmo</li>
+          <li><Search class="feature-icon" /> explorar conceitos fundamentais de forma interativa</li>
+        </ul>
+        <p>
+          O objetivo é reduzir a distância entre <strong>teoria e prática</strong>, permitindo que você veja <strong>uma representação visual do que acontece</strong> quando um algoritmo é executado.
+        </p>
       </div>
     </section>
-    -->
-    */}
 
-    <!-- Seção Objetivo + Extras -->
-    <section class="px-4 py-16 max-w-6xl mx-auto w-full">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        
-        <!-- Objetivo -->
-        <div class="bg-card border border-border rounded-lg p-6 md:p-8">
-          <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4">{objective.title}</h2>
-          <p class="text-muted-foreground leading-relaxed text-justify">{objective.description}</p>
+    <!-- Seção: Aviso importante -->
+    <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
+      <div class="scroll-content fade">
+        <div class="notice-box">
+          <h2 class="section-title">Aviso importante</h2>
+          <p>
+            O conteúdo apresentado aqui tem como objetivo <strong>introduzir os principais conceitos de algoritmos e estruturas de dados</strong>.
+          </p>
+          <p>
+            Esta aplicação não substitui um estudo aprofundado do tema. Algoritmos são um campo amplo da ciência da computação, e compreender plenamente suas aplicações exige prática, leitura e experimentação contínua.
+          </p>
+          <p>
+            Use esta ferramenta como um <strong>ponto de partida para construir uma base sólida</strong>, e continue explorando os conceitos em maior profundidade ao longo da sua jornada de aprendizado.
+          </p>
         </div>
-
-        <!-- Informações Extras -->
-        <Card label="Extras" title={extras.title}>
-          <Info slot="icon" class="size-5" />
-          <div class="space-y-3">
-            <div>
-              <span class="text-xs text-muted-foreground uppercase tracking-wider">Status</span>
-              <p class="text-primary font-medium">{extras.status}</p>
-            </div>
-            <div>
-              <span class="text-xs text-muted-foreground uppercase tracking-wider">Próximas adições</span>
-              <ul class="mt-1 space-y-1">
-                {extras.futureAdditions.map((item) => (
-                  <li class="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Sparkles class="size-3 text-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Card>
-
       </div>
     </section>
 
@@ -189,7 +116,119 @@ const objective = {
     "ELXP" 0;
 }
 
-.guide-list li:nth-child(even) {
-  background-color: oklch(0.3 0.02 250);
+.section-title {
+  font-family: "Bitcount Grid Double", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.scroll-content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.scroll-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-left {
+  transform: translateX(-40px);
+}
+
+.slide-right {
+  transform: translateX(40px);
+}
+
+.fade {
+  transform: translateY(40px);
+}
+
+.scroll-content p {
+  color: var(--muted-foreground);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.scroll-content p:last-child {
+  margin-bottom: 0;
+}
+
+.scroll-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--accent);
+  margin-top: 0.1rem;
+}
+
+.notice-box {
+  background: linear-gradient(135deg, oklch(0.22 0.04 296) 0%, oklch(0.18 0.03 280) 100%);
+  border: 1px solid oklch(0.35 0.06 290);
+  border-radius: 0.75rem;
+  padding: 2rem;
+}
+
+.notice-box .section-title {
+  color: oklch(0.9 0.02 90);
+}
+
+.notice-box p {
+  color: oklch(0.75 0.02 250);
+}
+
+.notice-box strong {
+  color: oklch(0.95 0.01 90);
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
 }
 </style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.scroll-content').forEach(el => {
+    observer.observe(el);
+  });
+</script>
