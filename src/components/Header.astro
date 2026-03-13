@@ -43,15 +43,15 @@ const infos = [
               aria-label={item.label}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                "flex items-center gap-2 text-sm font-medium transition-colors duration-200 relative group",
-                isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-accent"
+                "flex items-center gap-2 text-sm font-medium transition-all duration-200 relative group py-1",
+                isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-white/90"
               ]}
             >
               <item.Icon class="size-4" aria-hidden="true" />
               {item.content}
               <span class:list={[
-                "absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full",
-                isActive ? "w-full" : ""
+                "absolute -bottom-1 left-0 h-0.5 bg-white/30 transition-all duration-300 group-hover:w-full group-hover:shadow-[0_0_8px_rgba(255,255,255,0.15)]",
+                isActive ? "w-full bg-white/30 shadow-[0_0_8px_rgba(255,255,255,0.15)]" : "w-0"
               ]}></span>
             </a>
           </li>
@@ -79,8 +79,8 @@ const infos = [
               aria-current={isActive ? 'page' : undefined}
               role="menuitem"
               class:list={[
-                "flex items-center gap-3 py-3 px-4 transition-all rounded-lg",
-                isActive ? "text-primary font-semibold bg-secondary" : "text-muted-foreground hover:bg-secondary hover:text-primary"
+                "flex items-center gap-3 py-3 px-4 transition-all duration-200 rounded-lg border border-transparent",
+                isActive ? "text-primary font-semibold bg-secondary border-white/10" : "text-muted-foreground hover:bg-secondary/50 hover:text-white/90 hover:border-white/10"
               ]}
             >
               <item.Icon class="size-5" aria-hidden="true" />

@@ -8,40 +8,38 @@ interface Props {
 const { title, label, date } = Astro.props;
 ---
 
-<article class="group relative bg-card border border-border h-full overflow-hidden transition-all duration-300 hover:border-accent">
+<article class="group relative bg-card border border-border h-full overflow-hidden transition-all duration-300 hover:border-white/30">
   <!-- Inner subtle grid pattern -->
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
        style="background-image: linear-gradient(rgb(255,255,255) 1px, transparent 1px), linear-gradient(90deg, rgb(255,255,255) 1px, transparent 1px); background-size: 8px 8px;">
   </div>
 
+  <!-- Subtle light sweep gradient on hover -->
+  <div class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none"
+       style="background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);">
+  </div>
+
   <!-- Corner accents - decorative brackets like memory addresses -->
-  <div class="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-border/50 transition-colors duration-300 group-hover:border-accent"></div>
-  <div class="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-border/50 transition-colors duration-300 group-hover:border-accent"></div>
-  <div class="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-border/50 transition-colors duration-300 group-hover:border-accent"></div>
-  <div class="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-border/50 transition-colors duration-300 group-hover:border-accent"></div>
+  <div class="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-border/50 transition-all duration-300 group-hover:border-white/40 group-hover:shadow-[0_0_8px_rgba(255,255,255,0.15)]"></div>
+  <div class="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-border/50 transition-all duration-300 group-hover:border-white/40 group-hover:shadow-[0_0_8px_rgba(255,255,255,0.15)]"></div>
+  <div class="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-border/50 transition-all duration-300 group-hover:border-white/40 group-hover:shadow-[0_0_8px_rgba(255,255,255,0.15)]"></div>
+  <div class="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-border/50 transition-all duration-300 group-hover:border-white/40 group-hover:shadow-[0_0_8px_rgba(255,255,255,0.15)]"></div>
 
   <!-- Subtle inner glow on hover -->
-  <div class="absolute inset-0 bg-accent/0 transition-all duration-300 group-hover:bg-accent/5 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-white/0 transition-all duration-300 group-hover:bg-white/[0.02] pointer-events-none"></div>
 
   <!-- Content -->
   <div class="relative z-10 p-5">
-    <!-- Header with icon and label -->
+    <!-- Header with label only (no icon) -->
     {label && (
-      <div class="flex items-center gap-2 mb-3">
-        <!-- Icon container with subtle background -->
-        <div class="flex items-center justify-center size-8 bg-secondary/50 border border-border/50 transition-all duration-300 group-hover:border-accent/50 group-hover:bg-accent/10">
-          <slot name="icon" />
-        </div>
-        <!-- Label as a technical tag -->
-        <div class="flex items-center gap-1">
-          <span class="text-[10px] text-muted-foreground/50 font-mono">0x</span>
-          <h2 class="text-xs font-semibold uppercase tracking-wider text-primary font-mono">{label}</h2>
-        </div>
+      <div class="flex items-center gap-1 mb-3">
+        <span class="text-[10px] text-muted-foreground/50 font-mono">0x</span>
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-primary font-mono">{label}</h2>
       </div>
     )}
     
     {title && (
-      <h3 class="text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors duration-300">{title}</h3>
+      <h3 class="text-xl font-medium text-primary mb-2 group-hover:text-white/90 transition-colors duration-300">{title}</h3>
     )}
     
     <div class="text-muted-foreground text-sm leading-relaxed">
@@ -75,6 +73,6 @@ const { title, label, date } = Astro.props;
 
   /* Subtle shadow lift on hover */
   article:hover {
-    box-shadow: 0 4px 20px oklch(0 0 0 / 0.3);
+    box-shadow: 0 4px 20px oklch(0 0 0 / 0.3), 0 0 30px oklch(0.15 0.02 300 / 0.1);
   }
 </style>
