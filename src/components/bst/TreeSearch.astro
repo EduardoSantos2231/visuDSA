@@ -1,0 +1,57 @@
+---
+const { class: className } = Astro.props;
+---
+
+<svg 
+  class={className}
+  viewBox="0 0 600 380" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Edges - highlighting search path -->
+  <line x1="300" y1="60" x2="180" y2="140" stroke="oklch(0.6731 0.1624 144.2083)" stroke-width="3"/>
+  <line x1="180" y1="140" x2="100" y2="220" stroke="oklch(0.6731 0.1624 144.2083)" stroke-width="3"/>
+  
+  <!-- Non-path edges (dimmed) -->
+  <line x1="300" y1="60" x2="420" y2="140" stroke="oklch(0.7137 0.0192 261.3246)" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="180" y1="140" x2="260" y2="220" stroke="oklch(0.7137 0.0192 261.3246)" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="420" y1="140" x2="500" y2="220" stroke="oklch(0.7137 0.0192 261.3246)" stroke-width="2" stroke-opacity="0.4"/>
+
+  <!-- Nodes -->
+  <!-- Root: 50 - comparing -->
+  <rect x="255" y="40" width="90" height="45" rx="8" fill="oklch(0.6731 0.1624 144.2083)" stroke="oklch(0.6731 0.1624 144.2083)" stroke-width="2.5"/>
+  <text x="300" y="70" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">50</text>
+
+  <!-- Level 1 - 25 comparing -->
+  <rect x="135" y="120" width="90" height="45" rx="8" fill="oklch(0.6731 0.1624 144.2083)" stroke="oklch(0.6731 0.1624 144.2083)" stroke-width="2.5"/>
+  <text x="180" y="150" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">25</text>
+
+  <!-- Level 1 - 75 dimmed -->
+  <rect x="375" y="120" width="90" height="45" rx="8" fill="oklch(0.2235 0.0049 145.4099)" stroke="oklch(0.2781 0.0296 256.8480)" stroke-width="2"/>
+  <text x="420" y="150" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600" opacity="0.6">75</text>
+
+  <!-- Level 2 - 10 found (target) -->
+  <rect x="55" y="200" width="90" height="45" rx="8" fill="oklch(0.4220 0.0941 141.4072)" stroke="oklch(0.4220 0.0941 141.4072)" stroke-width="2.5"/>
+  <text x="100" y="230" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600">10</text>
+  
+  <!-- Label "alvo" above 10 - FIXED position -->
+  <text x="100" y="190" text-anchor="middle" fill="oklch(0.4220 0.0941 141.4072)" font-family="Inter, sans-serif" font-size="13" font-weight="600">alvo</text>
+
+  <!-- Level 2 - 33 dimmed -->
+  <rect x="215" y="200" width="90" height="45" rx="8" fill="oklch(0.2235 0.0049 145.4099)" stroke="oklch(0.2781 0.0296 256.8480)" stroke-width="2"/>
+  <text x="260" y="230" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600" opacity="0.6">33</text>
+
+  <!-- Level 2 - 90 dimmed -->
+  <rect x="455" y="200" width="90" height="45" rx="8" fill="oklch(0.2235 0.0049 145.4099)" stroke="oklch(0.2781 0.0296 256.8480)" stroke-width="2"/>
+  <text x="500" y="230" text-anchor="middle" fill="oklch(1 0 0)" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600" opacity="0.6">90</text>
+
+  <!-- Search path labels - reposicionados à esquerda da árvore -->
+  <text x="170" y="55" text-anchor="middle" fill="oklch(0.6731 0.1624 144.2083)" font-family="Inter, sans-serif" font-size="13" font-weight="600">1</text>
+  <text x="90" y="135" text-anchor="middle" fill="oklch(0.6731 0.1624 144.2083)" font-family="Inter, sans-serif" font-size="13" font-weight="600">2</text>
+  <text x="55" y="220" text-anchor="middle" fill="oklch(0.4220 0.0941 141.4072)" font-family="Inter, sans-serif" font-size="13" font-weight="600">3</text>
+
+  <!-- Legend -->
+  <text x="300" y="285" text-anchor="middle" fill="oklch(0.7137 0.0192 261.3246)" font-family="Inter, sans-serif" font-size="13">1. 50 &gt; 10 → esquerda</text>
+  <text x="300" y="308" text-anchor="middle" fill="oklch(0.7137 0.0192 261.3246)" font-family="Inter, sans-serif" font-size="13">2. 25 &gt; 10 → esquerda</text>
+  <text x="300" y="331" text-anchor="middle" fill="oklch(0.4220 0.0941 141.4072)" font-family="Inter, sans-serif" font-size="13" font-weight="600">3. encontrado!</text>
+</svg>

@@ -1,0 +1,411 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import TableOfContents from '../../components/TableOfContents.astro';
+import TreeStructure from '../../components/bst/TreeStructure.astro';
+import TreeSearch from '../../components/bst/TreeSearch.astro';
+import { GitBranch, Network, ArrowLeftRight, Search, Plus, Trash2, Scale, Route, TreeDeciduous, ListOrdered } from '@lucide/astro';
+
+const tocItems = [
+  { id: 'definicao', label: 'O que são Árvores Binárias?' },
+  { id: 'estrutura', label: 'Estrutura da Árvore' },
+  { id: 'ordenacao', label: 'Regra de Ordenação' },
+  { id: 'busca', label: 'Busca' },
+  { id: 'insercao', label: 'Inserção' },
+  { id: 'delecao', label: 'Deleção' },
+  { id: 'balanceamento', label: 'Árvores Balanceadas vs Não Balanceadas' },
+  { id: 'traversal', label: 'Percorrendo uma Árvore' },
+  { id: 'outras', label: 'Outras Estruturas Baseadas em Árvores' },
+  { id: 'resumo', label: 'Resumo de Complexidades' },
+];
+---
+
+<Layout title="Árvore - Estrutura de Dados">
+  <Header />
+  <div class="px-4 py-8 max-w-6xl mx-auto">
+    <div class="flex gap-12 lg:gap-16">
+      <TableOfContents items={tocItems} />
+      
+      <main class="flex-1 min-w-0 max-w-4xl">
+        
+        <section class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Árvore Binária</h1>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+            Uma <span class="text-primary font-medium">árvore binária</span> é uma estrutura de dados hierárquica onde cada nó possui até dois filhos. 
+            Ela oferece um equilíbrio importante: mantém os dados ordenados enquanto permite operações eficientes de busca, inserção e remoção.
+          </p>
+        </section>
+
+        <section id="definicao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Conceito">
+            <GitBranch slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">O que são Árvores Binárias?</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Uma <span class="text-primary font-medium">árvore binária</span> é uma estrutura de dados baseada em <span class="text-primary font-medium">nós</span>, 
+              semelhante às listas ligadas no sentido de que os elementos não são armazenados em posições contíguas de memória, mas conectados por referências.
+            </p>
+            <p>
+              Cada nó da árvore pode se conectar a <span class="text-primary font-medium">outros dois nós</span>, formando uma estrutura hierárquica.
+            </p>
+            <p>
+              Essa organização permite representar dados de forma eficiente quando precisamos <span class="text-primary font-medium">manter ordem</span> e realizar operações frequentes de <span class="text-primary font-medium">busca, inserção e remoção</span>.
+            </p>
+            <p class="mt-4">
+              Árvores binárias surgem como uma solução interessante para um problema comum:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">arrays ordenados</span> permitem busca rápida, mas inserções e deleções são custosas</li>
+              <li><span class="text-primary font-medium">hash tables</span> possuem operações muito rápidas, mas não mantêm ordem</li>
+            </ul>
+            <p class="mt-4">
+              As árvores binárias oferecem um equilíbrio: <span class="text-primary font-medium">mantêm os dados ordenados e ainda permitem operações eficientes</span>.
+            </p>
+          </div>
+        </section>
+
+        <section id="estrutura" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Estrutura">
+            <Network slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Estrutura da Árvore</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Uma árvore binária é composta por <span class="text-primary font-medium">nós conectados entre si</span>.
+            </p>
+            <p>
+              Cada nó possui três componentes principais:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">valor</span> → dado armazenado no nó</li>
+              <li><span class="text-primary font-medium">left child</span> → referência para o nó à esquerda</li>
+              <li><span class="text-primary font-medium">right child</span> → referência para o nó à direita</li>
+            </ul>
+            <p class="mt-4">
+              Alguns termos importantes:
+            </p>
+          </div>
+          
+          <div class="overflow-x-auto mt-4 mb-4">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="py-3 px-4 font-semibold text-primary">Termo</th>
+                  <th class="py-3 px-4 font-semibold text-primary">Significado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-border">
+                  <td class="py-3 px-4 text-primary font-medium">Root (raiz)</td>
+                  <td class="py-3 px-4">primeiro nó da árvore</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-3 px-4 text-primary font-medium">Parent (pai)</td>
+                  <td class="py-3 px-4">nó que possui filhos</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-3 px-4 text-primary font-medium">Child (filho)</td>
+                  <td class="py-3 px-4">nó conectado a outro nó acima</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 text-primary font-medium">Leaf (folha)</td>
+                  <td class="py-3 px-4">nó que não possui filhos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p class="mt-4">
+              Exemplo:
+            </p>
+          </div>
+          
+          <div class="flex justify-center my-6">
+            <TreeStructure class="w-full max-w-[400px] h-auto" />
+          </div>
+          
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Nesse exemplo:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">50</span> é a raiz</li>
+              <li><span class="text-primary font-medium">25 e 75</span> são filhos de 50</li>
+              <li><span class="text-primary font-medium">10, 33 e 90</span> são folhas</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="ordenacao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Ordenação">
+            <ArrowLeftRight slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Regra de Ordenação</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Em uma <span class="text-primary font-medium">Binary Search Tree (BST)</span> existe uma regra fundamental:
+            </p>
+            <p class="font-mono text-lg bg-secondary px-3 py-1 rounded text-primary text-center">
+              valores <span class="text-primary font-medium">menores</span> ficam à <span class="text-primary font-medium">esquerda</span><br/>
+              valores <span class="text-primary font-medium">maiores</span> ficam à <span class="text-primary font-medium">direita</span>
+            </p>
+            <p>
+              Essa regra é o que permite que operações de busca sejam realizadas de forma eficiente.
+            </p>
+          </div>
+        </section>
+
+        <section id="busca" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Busca">
+            <Search slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Busca</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A busca em uma árvore binária começa sempre pela <span class="text-primary font-medium">raiz</span>.
+            </p>
+            <p>
+              O algoritmo segue os seguintes passos:
+            </p>
+            <ol class="list-decimal list-inside space-y-2 ml-4">
+              <li>Observe o valor do nó atual.</li>
+              <li>Se ele for o valor procurado, a busca termina.</li>
+              <li>Se o valor procurado for <span class="text-primary font-medium">menor</span>, vá para o filho esquerdo.</li>
+              <li>Se for <span class="text-primary font-medium">maior</span>, vá para o filho direito.</li>
+            </ol>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+          </div>
+          
+          <div class="flex justify-center my-6">
+            <TreeSearch class="w-full max-w-[400px] h-auto" />
+          </div>
+          
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A cada passo descartamos metade das possibilidades.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade média: O(log N)</span>
+            </p>
+            <p class="mt-4">
+              Isso é semelhante à eficiência da <span class="text-primary font-medium">busca binária em arrays ordenados</span>.
+            </p>
+          </div>
+        </section>
+
+        <section id="insercao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Inserção">
+            <Plus slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Inserção</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Inserir um elemento em uma árvore binária segue a mesma lógica da busca.
+            </p>
+            <p>
+              Primeiro encontramos o local correto onde o novo valor deve ficar.
+            </p>
+            <p class="mt-4">
+              Exemplo: inserir <span class="text-primary font-medium">30</span>
+            </p>
+          </div>
+          
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Como a inserção é fundamentalmente <span class="text-primary font-medium">uma busca seguida de um único ajuste</span>, a complexidade é:
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(log N)</span>
+            </p>
+            <p class="mt-4">
+              Isso é significativamente melhor do que arrays ordenados, onde inserções custam <span class="text-primary font-medium">O(N)</span> devido ao deslocamento de elementos.
+            </p>
+          </div>
+        </section>
+
+        <section id="delecao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Remoção">
+            <Trash2 slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Deleção</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Remover um nó de uma árvore binária pode ocorrer em três cenários.
+            </p>
+          </div>
+
+          <h4 class="text-primary font-medium mt-6 mb-3">Caso 1 — Nó sem filhos</h4>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Se o nó não possui filhos, basta removê-lo.
+            </p>
+          </div>
+
+          <h4 class="text-primary font-medium mt-6 mb-3">Caso 2 — Nó com um filho</h4>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Se o nó possui apenas um filho, removemos o nó e conectamos o filho diretamente ao seu pai.
+            </p>
+          </div>
+
+          <h4 class="text-primary font-medium mt-6 mb-3">Caso 3 — Nó com dois filhos</h4>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Esse é o caso mais complexo.
+            </p>
+            <p>
+              O procedimento é:
+            </p>
+            <ol class="list-decimal list-inside space-y-2 ml-4">
+              <li>Encontrar o <span class="text-primary font-medium">sucessor</span> do nó.</li>
+              <li>Substituir o valor do nó removido por esse sucessor.</li>
+              <li>Remover o sucessor da posição original.</li>
+            </ol>
+            <p class="mt-4">
+              O <span class="text-primary font-medium">sucessor</span> é o menor valor da subárvore direita.
+            </p>
+          </div>
+        </section>
+
+        <section id="balanceamento" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Balanceamento">
+            <Scale slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Árvores Balanceadas vs Não Balanceadas</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A eficiência das árvores binárias depende da sua <span class="text-primary font-medium">forma</span>.
+            </p>
+          </div>
+
+          <h4 class="text-primary font-medium mt-6 mb-3">Árvore Balanceada (Melhor Caso)</h4>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Uma árvore balanceada distribui os nós de maneira uniforme.
+            </p>
+          </div>
+
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              <span class="font-mono bg-secondary px-3 py-1 rounded">Altura da árvore ≈ log N</span>
+            </p>
+            <p class="mt-4">
+              Operações:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>busca → <span class="text-primary font-mono">O(log N)</span></li>
+              <li>inserção → <span class="text-primary font-mono">O(log N)</span></li>
+              <li>deleção → <span class="text-primary font-mono">O(log N)</span></li>
+            </ul>
+          </div>
+
+          <h4 class="text-primary font-medium mt-8 mb-3">Árvore Não Balanceada (Pior Caso)</h4>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Se os valores forem inseridos em ordem crescente, a árvore pode degenerar em uma lista.
+            </p>
+            <p>
+              Nesse cenário:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>busca → <span class="text-destructive font-mono">O(N)</span></li>
+              <li>inserção → <span class="text-destructive font-mono">O(N)</span></li>
+              <li>deleção → <span class="text-destructive font-mono">O(N)</span></li>
+            </ul>
+            <p class="mt-4">
+              Ou seja, a árvore perde sua eficiência.
+            </p>
+          </div>
+        </section>
+
+        <section id="traversal" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Traversal">
+            <Route slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Percorrendo uma Árvore</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              O processo de visitar todos os nós de uma estrutura de dados é chamado de <span class="text-primary font-medium">traversal</span>.
+            </p>
+            <p>
+              Existem diferentes maneiras de percorrer uma árvore:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">Preorder</span> — raiz, esquerda, direita</li>
+              <li><span class="text-primary font-medium">Inorder</span> — esquerda, raiz, direita</li>
+              <li><span class="text-primary font-medium">Postorder</span> — esquerda, direita, raiz</li>
+            </ul>
+            <p class="mt-4">
+              Esses percursos são usados em diversos algoritmos e aplicações.
+            </p>
+          </div>
+        </section>
+
+        <section id="outras" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Variações">
+            <TreeDeciduous slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Outras Estruturas Baseadas em Árvores</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Árvores binárias são apenas uma das muitas estruturas baseadas nesse conceito.
+            </p>
+            <p>
+              Outras variações incluem:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><span class="text-primary font-medium">Heaps</span></li>
+              <li><span class="text-primary font-medium">B-Trees</span></li>
+              <li><span class="text-primary font-medium">Red-Black Trees</span></li>
+              <li><span class="text-primary font-medium">2-3-4 Trees</span></li>
+            </ul>
+            <p class="mt-4">
+              Cada uma é otimizada para cenários específicos, especialmente quando lidamos com <span class="text-primary font-medium">grandes volumes de dados ou sistemas complexos</span>.
+            </p>
+          </div>
+        </section>
+
+        <section id="resumo" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Resumo">
+            <ListOrdered slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
+          <div class="text-muted-foreground text-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="py-3 px-4 font-semibold text-primary">Operação</th>
+                    <th class="py-3 px-4 font-semibold text-primary">Complexidade (balanceada)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Busca</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(log N)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Inserção</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(log N)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">Deleção</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(log N)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+  <Footer />
+</Layout>
