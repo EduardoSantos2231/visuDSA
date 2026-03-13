@@ -2,47 +2,126 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search } from '@lucide/astro';
+import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search, Code2, Cpu, Layers, Hash } from '@lucide/astro';
 
 const navItems = [
   { content: "Introdução", link: "/visuDSA/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
   { content: "Algoritmos", link: "/visuDSA/algoritmos", Icon: Binary, label: "Visualize algoritmos em ação" },
   { content: "E. de dados", link: "/visuDSA/estrutura-de-dados", Icon: Database, label: "Explore estruturas de dados" },
 ];
+
+const floatingElements = [
+  { char: '{', x: '10%', y: '20%', delay: '0s' },
+  { char: '}', x: '85%', y: '15%', delay: '0.5s' },
+  { char: '[', x: '75%', y: '70%', delay: '1s' },
+  { char: ']', x: '20%', y: '75%', delay: '1.5s' },
+  { char: 'O(1)', x: '60%', y: '30%', delay: '0.3s' },
+  { char: 'n²', x: '30%', y: '45%', delay: '0.8s' },
+  { char: 'log', x: '80%', y: '50%', delay: '1.2s' },
+  { char: '→', x: '45%', y: '80%', delay: '0.6s' },
+  { char: '<>', x: '15%', y: '55%', delay: '1.8s' },
+  { char: '42', x: '70%', y: '35%', delay: '2s' },
+  { char: '99', x: '25%', y: '25%', delay: '0.4s' },
+  { char: '▲', x: '55%', y: '65%', delay: '1.4s' },
+];
+
+const algorithmCards = [
+  { Icon: Search, title: "Busca", desc: "Linear & Binária" },
+  { Icon: Layers, title: "Ordenação", desc: "Bubble, Quick, Merge" },
+  { Icon: Hash, title: "Grafos", desc: "DFS, BFS, Dijkstra" },
+  { Icon: Cpu, title: "Recursão", desc: "Fibonacci, Backtracking" },
+];
 ---
 
 <Layout title="Home">
   <Header />
   <div class="flex flex-col">
-    <!-- Seção Hero: Título + Navegação (tela única) -->
-    <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 relative">
-      <h1 id="main_title" class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground text-center">
-        VisuDSA
-      </h1>
-      
-      <nav class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10" aria-label="Navegação rápida">
-        {navItems.map((item) => (
-          <a 
-            href={item.link} 
-            aria-label={item.label}
-            class="flex items-center gap-2 px-4 py-2 text-sm md:text-base text-muted-foreground hover:text-foreground border border-border hover:border-accent rounded-lg transition-all duration-300 hover:shadow-lg"
-          >
-            <item.Icon class="size-4" aria-hidden="true" />
-            <span>{item.content}</span>
-          </a>
+    <!-- Seção Hero: Título + Navegação -->
+    <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 relative overflow-hidden">
+      <!-- Animated Background Elements -->
+      <div class="hero-bg" aria-hidden="true">
+        {floatingElements.map((el) => (
+          <span class="floating-char" style={`left: ${el.x}; top: ${el.y}; animation-delay: ${el.delay};`}>
+            {el.char}
+          </span>
         ))}
-      </nav>
+        
+        <!-- Grid pattern overlay -->
+        <div class="hero-grid"></div>
+        
+        <!-- Animated sorting bars (subtle) -->
+        <div class="sorting-viz">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div class="sort-bar" style={`height: ${20 + Math.random() * 60}%; animation-delay: ${i * 0.1}s;`}></div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-content relative z-10 text-center">
+        
+        
+        <h1 id="main_title" class="hero-title">
+          <span class="title-line inline-block opacity-0 animate-slide-up" style="animation-delay: 0.1s;">Visu</span>
+          <span class="title-accent inline-block opacity-0 animate-slide-up" style="animation-delay: 0.2s;">DSA</span>
+        </h1>
+        
+        <p class="hero-subtitle opacity-0 animate-fade-in" style="animation-delay: 0.4s;">
+          Veja algoritmos e estruturas de dados em ação
+        </p>
+        
+        <nav class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10" aria-label="Navegação rápida">
+          {navItems.map((item, index) => (
+            <a 
+              href={item.link} 
+              aria-label={item.label}
+              class="nav-btn opacity-0 animate-fade-in"
+              style={`animation-delay: ${0.5 + index * 0.1}s;`}
+            >
+              <span class="nav-btn-bg"></span>
+              <span class="nav-btn-content">
+                <item.Icon class="size-4" aria-hidden="true" />
+                <span>{item.content}</span>
+              </span>
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Algorithm Preview Cards (decorative) -->
+      <div class="hero-cards hidden lg:flex absolute bottom-24 left-1/2 -translate-x-1/2 gap-4 opacity-0 animate-fade-in" style="animation-delay: 0.8s;">
+        {algorithmCards.map((card) => (
+          <div class="hero-card">
+            <card.Icon class="size-5" />
+            <div>
+              <div class="hero-card-title">{card.title}</div>
+              <div class="hero-card-desc">{card.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <!-- Indicador de Scroll -->
-      <div class="absolute bottom-6 md:bottom-8" aria-hidden="true">
-        <ArrowDown class="size-6 md:size-8 text-muted-foreground animate-bounce" />
+      <div class="absolute bottom-6 md:bottom-8 z-10" aria-hidden="true">
+        <div class="scroll-indicator">
+          <ArrowDown class="size-5 text-muted-foreground" />
+        </div>
       </div>
     </section>
+
+    <!-- Decorative Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <div class="divider-line"></div>
+            <div class="divider-line"></div>
+    </div>
 
     <!-- Seção: Por que estudar algoritmos? -->
     <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
       <div class="scroll-content slide-left">
-        <h2 class="section-title">Por que estudar algoritmos?</h2>
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Por que estudar algoritmos?</h2>
+        </div>
         <p>
           Algoritmos são a base de praticamente tudo o que acontece em software. Sempre que um programa precisa buscar dados, ordenar informações ou processar grandes volumes de entrada, existe um algoritmo por trás tomando essas decisões.
         </p>
@@ -58,10 +137,19 @@ const navItems = [
       </div>
     </section>
 
+    <!-- Decorative Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <div class="divider-line"></div>
+            <div class="divider-line"></div>
+    </div>
+
     <!-- Seção: Para que serve esta aplicação? -->
     <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
       <div class="scroll-content slide-right">
-        <h2 class="section-title">Para que serve esta aplicação?</h2>
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Para que serve esta aplicação?</h2>
+        </div>
         <p>
           Esta aplicação foi criada para tornar o estudo de algoritmos <strong>mais visual e intuitivo</strong>.
         </p>
@@ -78,11 +166,20 @@ const navItems = [
       </div>
     </section>
 
+    <!-- Decorative Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <div class="divider-line"></div>
+            <div class="divider-line"></div>
+    </div>
+
     <!-- Seção: Aviso importante -->
     <section class="px-4 py-20 md:py-32 max-w-4xl mx-auto">
       <div class="scroll-content fade">
         <div class="notice-box">
-          <h2 class="section-title">Aviso importante</h2>
+          <div class="notice-header">
+            <span class="notice-icon">i</span>
+            <h2 class="section-title">Aviso importante</h2>
+          </div>
           <p>
             O conteúdo apresentado aqui tem como objetivo <strong>introduzir os principais conceitos de algoritmos e estruturas de dados</strong>.
           </p>
@@ -104,7 +201,91 @@ const navItems = [
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
 
-#main_title {
+/* Hero Styles */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-char {
+  position: absolute;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.25rem;
+  color: oklch(0.35 0.06 290 / 0.3);
+  animation: float 8s ease-in-out infinite;
+  user-select: none;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateY(-20px) rotate(5deg); 
+    opacity: 0.6;
+  }
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(oklch(0.28 0.03 256 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.28 0.03 256 / 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 70%);
+}
+
+.sorting-viz {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 10%;
+  opacity: 0.15;
+}
+
+.sort-bar {
+  flex: 1;
+  max-width: 20px;
+  background: linear-gradient(to top, oklch(0.67 0.16 144), oklch(0.42 0.09 141));
+  animation: sort-pulse 3s ease-in-out infinite;
+}
+
+@keyframes sort-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Hero Content */
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: oklch(0.22 0.04 296 / 0.3);
+  border: 1px solid oklch(0.35 0.06 290);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: oklch(0.75 0.02 250);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-title {
   font-family: "Bitcount Grid Double", system-ui;
   font-optical-sizing: auto;
   font-weight: 200;
@@ -114,6 +295,144 @@ const navItems = [
     "CRSV" 0.5,
     "ELSH" 0,
     "ELXP" 0;
+  font-size: clamp(3rem, 12vw, 6rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.title-accent {
+  color: oklch(0.67 0.16 144);
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: oklch(0.71 0.02 261);
+  letter-spacing: 0.02em;
+}
+
+/* Navigation Buttons */
+.nav-btn {
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.nav-btn-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, oklch(0.22 0.04 296) 0%, oklch(0.18 0.03 280) 100%);
+  border: 1px solid oklch(0.35 0.06 290);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover .nav-btn-bg {
+  background: linear-gradient(135deg, oklch(0.28 0.05 296) 0%, oklch(0.22 0.04 280) 100%);
+  border-color: oklch(0.67 0.16 144);
+  box-shadow: 0 0 20px oklch(0.67 0.16 144 / 0.2);
+}
+
+.nav-btn-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  color: oklch(0.71 0.02 261);
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.nav-btn:hover .nav-btn-content {
+  color: oklch(0.92 0.01 145);
+}
+
+/* Hero Cards */
+.hero-cards {
+  position: absolute;
+  bottom: 6rem;
+}
+
+.hero-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: oklch(0.18 0.03 280 / 0.6);
+  border: 1px solid oklch(0.28 0.03 256);
+  color: oklch(0.71 0.02 261);
+  transition: all 0.3s ease;
+}
+
+.hero-card:hover {
+  border-color: oklch(0.42 0.09 141);
+  transform: translateY(-2px);
+}
+
+.hero-card-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: oklch(0.92 0.01 145);
+}
+
+.hero-card-desc {
+  font-size: 0.625rem;
+  color: oklch(0.56 0.02 261);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Section Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.28 0.03 256), transparent);
+}
+
+.divider-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: oklch(0.18 0.03 280);
+  border: 1px solid oklch(0.28 0.03 256);
+  color: oklch(0.56 0.02 261);
+}
+
+/* Content Sections */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: oklch(0.42 0.09 141);
+  letter-spacing: 0.1em;
 }
 
 .section-title {
@@ -128,13 +447,13 @@ const navItems = [
     "ELXP" 0;
   font-size: 1.75rem;
   color: var(--primary);
-  margin-bottom: 1.5rem;
+  margin: 0;
 }
 
 .scroll-content {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .scroll-content.visible {
@@ -170,6 +489,7 @@ const navItems = [
   font-weight: 600;
 }
 
+/* Feature List */
 .feature-list {
   list-style: none;
   padding: 0;
@@ -193,33 +513,103 @@ const navItems = [
   margin-top: 0.1rem;
 }
 
+/* Notice Box */
 .notice-box {
   background: linear-gradient(135deg, oklch(0.22 0.04 296) 0%, oklch(0.18 0.03 280) 100%);
   border: 1px solid oklch(0.35 0.06 290);
-  border-radius: 0.75rem;
+  border-radius: 0;
   padding: 2rem;
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.notice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: oklch(0.35 0.06 290);
+  border-radius: 0;
+  font-family: "Bitcount Grid Double", system-ui;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: oklch(0.95 0.01 90);
 }
 
 .notice-box .section-title {
   color: oklch(0.9 0.02 90);
+  margin: 0;
 }
 
 .notice-box p {
   color: oklch(0.75 0.02 250);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.notice-box p:last-child {
+  margin-bottom: 0;
 }
 
 .notice-box strong {
   color: oklch(0.95 0.01 90);
 }
 
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+/* Responsive */
 @media (min-width: 768px) {
   .section-title {
     font-size: 2.25rem;
+  }
+  
+  .section-header {
+    gap: 1.5rem;
+  }
+  
+  .section-number {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-cards {
+    display: none;
   }
 }
 </style>
 
 <script>
+  // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
