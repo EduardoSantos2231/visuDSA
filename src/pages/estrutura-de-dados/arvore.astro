@@ -6,6 +6,7 @@ import SectionHeader from "../../components/SectionHeader.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
 import TreeStructure from '../../components/bst/TreeStructure.astro';
 import TreeSearch from '../../components/bst/TreeSearch.astro';
+import CodeTerminal from '../../components/CodeTerminal.astro';
 import { GitBranch, Network, ArrowLeftRight, Search, Plus, Trash2, Scale, Route, TreeDeciduous, ListOrdered } from '@lucide/astro';
 
 const tocItems = [
@@ -149,10 +150,8 @@ const tocItems = [
             <p>
               Em uma <span class="text-primary font-medium">Binary Search Tree (BST)</span> existe uma regra fundamental:
             </p>
-            <p class="font-mono text-lg bg-secondary px-3 py-1 rounded text-primary text-center">
-              valores <span class="text-primary font-medium">menores</span> ficam à <span class="text-primary font-medium">esquerda</span><br/>
-              valores <span class="text-primary font-medium">maiores</span> ficam à <span class="text-primary font-medium">direita</span>
-            </p>
+            <CodeTerminal code="valores menores ficam à esquerda
+valores maiores ficam à direita" />
             <p>
               Essa regra é o que permite que operações de busca sejam realizadas de forma eficiente.
             </p>

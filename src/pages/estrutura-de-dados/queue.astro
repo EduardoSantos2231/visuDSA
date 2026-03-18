@@ -2,17 +2,254 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import TableOfContents from '../../components/TableOfContents.astro';
+import CodeTerminal from '../../components/CodeTerminal.astro';
+import { ListOrdered, Settings2, ArrowDownToLine, ArrowUpFromLine, Eye, Search, ListChecks, Table2 } from '@lucide/astro';
+
+const tocItems = [
+  { id: 'definicao', label: 'O que é uma Queue?' },
+  { id: 'funcionamento', label: 'Funcionamento' },
+  { id: 'insercao', label: 'Inserção (Enqueue)' },
+  { id: 'remocao', label: 'Remoção (Dequeue)' },
+  { id: 'leitura', label: 'Leitura (Front)' },
+  { id: 'busca', label: 'Busca' },
+  { id: 'quando-usar', label: 'Quando usar uma Queue?' },
+  { id: 'resumo', label: 'Resumo de Complexidades' },
+];
 ---
 
 <Layout title="Queue - Estrutura de Dados">
   <Header />
-  <main class="px-4 py-8 max-w-4xl mx-auto">
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Queue (Fila)</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
-        Esta página está em desenvolvimento. Em breve, haverá conteúdo sobre filas.
-      </p>
-    </section>
-  </main>
+  <div class="px-4 py-8 max-w-6xl mx-auto">
+    <div class="flex gap-12 lg:gap-16">
+      <TableOfContents items={tocItems} />
+      
+      <main class="flex-1 min-w-0 max-w-4xl">
+        
+        <section class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Queue</h1>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+            Uma <span class="text-primary font-medium">queue</span> (fila) é uma estrutura de dados que organiza elementos seguindo a regra FIFO — First In, First Out. 
+            A analogia mais comum é uma fila de pessoas: quem chega primeiro é atendido primeiro.
+          </p>
+          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+            Assim como outras estruturas, o mais importante não é a implementação, mas <span class="text-primary font-medium">as regras de acesso aos dados</span>.
+          </p>
+        </section>
+
+        <section id="definicao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Conceito">
+            <ListOrdered slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">O que é uma Queue?</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Uma <span class="text-primary font-medium">queue</span> (fila) é uma estrutura de dados que organiza elementos seguindo a regra:
+            </p>
+            <p class="font-mono text-lg bg-secondary px-3 py-1 rounded text-primary text-center">
+              FIFO — First In, First Out<br/>
+              <span class="text-sm">(O primeiro a entrar é o primeiro a sair)</span>
+            </p>
+            <p>
+              A analogia mais comum é uma fila de pessoas: quem chega primeiro é atendido primeiro.
+            </p>
+            <p>
+              Assim como outras estruturas, o mais importante não é a implementação, mas <span class="text-primary font-medium">as regras de acesso aos dados</span>.
+            </p>
+          </div>
+        </section>
+
+        <section id="funcionamento" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Funcionamento">
+            <Settings2 slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Funcionamento</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Em uma queue, as operações acontecem em extremidades opostas:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>inserção ocorre no <span class="text-primary font-medium">final da fila</span></li>
+              <li>remoção ocorre no <span class="text-primary font-medium">início da fila</span></li>
+            </ul>
+            <p class="mt-4">
+              Também é possível consultar o elemento que está no início sem removê-lo.
+            </p>
+            <p>
+              Essa separação garante que os elementos sejam processados na ordem correta.
+            </p>
+          </div>
+        </section>
+
+        <section id="insercao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Inserção">
+            <ArrowDownToLine slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Inserção (Enqueue)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Inserir em uma queue significa adicionar um elemento ao final da estrutura.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="[10, 20, 30]" />
+            </div>
+            <p class="mt-4">
+              Após inserção de um novo valor <span class="text-primary font-medium">40</span>:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="[10, 20, 30, 40]" />
+            </div>
+            <p class="mt-4">
+              Nenhum elemento precisa ser deslocado.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="remocao" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Remoção">
+            <ArrowUpFromLine slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Remoção (Dequeue)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              A remoção ocorre sempre no início da fila.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="[10, 20, 30, 40]" />
+            </div>
+            <p class="mt-4">
+              Após remoção:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="[20, 30, 40]" />
+            </div>
+            <p class="mt-4">
+              Em implementações eficientes, não há necessidade de deslocar todos os elementos.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="leitura" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Leitura">
+            <Eye slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Leitura (Front/Peek)</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              É possível acessar o elemento que está no início da fila sem removê-lo.
+            </p>
+            <p class="mt-4">
+              Exemplo:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="[10, 20, 30]" />
+            </div>
+            <p class="mt-4">
+              Resultado:
+            </p>
+            <div class="my-4">
+              <CodeTerminal code="10" />
+            </div>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(1)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="busca" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Busca">
+            <Search slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Busca</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Queues <span class="text-primary font-medium">não são projetadas para busca eficiente</span>.
+            </p>
+            <p>
+              Para encontrar um elemento, é necessário percorrer a estrutura de forma sequencial.
+            </p>
+            <p class="mt-4">
+              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade: O(N)</span>
+            </p>
+          </div>
+        </section>
+
+        <section id="quando-usar" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Uso">
+            <ListChecks slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Quando usar uma Queue?</h3>
+          <div class="text-muted-foreground text-sm space-y-3 text-justify">
+            <p>
+              Queues são utilizadas quando é necessário processar elementos <span class="text-primary font-medium">na ordem em que chegam</span>.
+            </p>
+            <p class="mt-4">
+              Cenários comuns incluem:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>processamento de tarefas em ordem de chegada</li>
+              <li>gerenciamento de requisições em sistemas</li>
+              <li>controle de acesso a recursos compartilhados</li>
+              <li>algoritmos que exploram estruturas em camadas</li>
+            </ul>
+            <p class="mt-4">
+              Sempre que a ordem de processamento for importante, a queue é uma escolha adequada.
+            </p>
+          </div>
+        </section>
+
+        <section id="resumo" class="mb-12 scroll-mt-20">
+          <SectionHeader label="Resumo">
+            <Table2 slot="icon" class="size-3" />
+          </SectionHeader>
+          <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
+          <div class="text-muted-foreground text-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="py-3 px-4 font-semibold text-primary">Operação</th>
+                    <th class="py-3 px-4 font-semibold text-primary">Complexidade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Inserção (Enqueue)</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(1)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Remoção (Dequeue)</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(1)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 px-4">Leitura (Front)</td>
+                    <td class="py-3 px-4 font-mono text-primary">O(1)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">Busca</td>
+                    <td class="py-3 px-4 font-mono">O(N)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
   <Footer />
 </Layout>

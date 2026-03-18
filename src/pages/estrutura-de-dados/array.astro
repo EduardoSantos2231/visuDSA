@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
+import CodeTerminal from '../../components/CodeTerminal.astro';
 import { List, Cpu, Search, Plus, Trash2, Table2, ListOrdered } from '@lucide/astro';
 
 const tocItems = [
@@ -270,7 +271,7 @@ const tocItems = [
         <p>
           Considere o seguinte array:
         </p>
-        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>const array = [10, 33, 44, 55]</code></pre>
+        <CodeTerminal code="const array = [10, 33, 44, 55]" />
         <p>
           Suponha que queremos encontrar o valor <span class="text-primary font-medium">22</span>.
         </p>
@@ -311,11 +312,11 @@ const tocItems = [
         <p>
           Por exemplo, ao inserir o valor <span class="text-primary font-medium">22</span> no array:
         </p>
-        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>[10, 33, 44, 55]</code></pre>
+        <CodeTerminal code="[10, 33, 44, 55]" />
         <p>
           O resultado precisa ser:
         </p>
-        <pre class="font-mono bg-secondary p-3 rounded-lg text-primary overflow-x-auto"><code>[10, 22, 33, 44, 55]</code></pre>
+        <CodeTerminal code="[10, 22, 33, 44, 55]" />
         <p>
           Para isso, os elementos <span class="text-primary font-medium">33, 44 e 55</span> precisam ser deslocados uma posição à frente.
         </p>
