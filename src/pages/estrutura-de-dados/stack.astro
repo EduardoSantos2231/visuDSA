@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
+import CodeTerminal from '../../components/CodeTerminal.astro';
 import { Layers, Settings2, ArrowDown, ArrowUp, Eye, Search, ListOrdered } from '@lucide/astro';
 
 const tocItems = [
@@ -94,15 +95,11 @@ const tocItems = [
             <p class="mt-4">
               Exemplo:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
-[10, 20, 30]
-            </div>
+            <CodeTerminal code="[10, 20, 30]" />
             <p class="mt-4">
               Após um <span class="text-primary font-mono">push(40)</span>:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
-[10, 20, 30, 40]
-            </div>
+            <CodeTerminal code="[10, 20, 30, 40]" />
             <p class="mt-4">
               Nenhum elemento precisa ser deslocado, pois sempre inserimos no final da estrutura.
             </p>
@@ -124,15 +121,11 @@ const tocItems = [
             <p class="mt-4">
               Exemplo:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
-[10, 20, 30, 40]
-            </div>
+            <CodeTerminal code="[10, 20, 30, 40]" />
             <p class="mt-4">
               Após um <span class="text-primary font-mono">pop()</span>:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
-[10, 20, 30]
-            </div>
+            <CodeTerminal code="[10, 20, 30]" />
             <p class="mt-4">
               O último elemento é removido diretamente, sem necessidade de mover outros elementos.
             </p>
@@ -154,15 +147,11 @@ const tocItems = [
             <p class="mt-4">
               Exemplo:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary">
-[10, 20, 30]
-            </div>
+            <CodeTerminal code="[10, 20, 30]" />
             <p class="mt-4">
               <span class="text-primary font-mono">peek()</span> retorna:
             </p>
-            <div class="font-mono text-sm bg-secondary p-3 rounded-lg text-primary text-center">
-30
-            </div>
+            <CodeTerminal code="30" />
             <p class="mt-4">
               Como o acesso é direto ao topo da estrutura:
             </p>
