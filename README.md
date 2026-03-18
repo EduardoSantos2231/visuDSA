@@ -1,17 +1,23 @@
 # VisuDSA
 
-> Visualização de Algoritmos e Estruturas de Dados de forma interativa e didática.
+> Visualização interativa de Algoritmos e Estruturas de Dados
 
-**Acesse agora:** https://eduardosantos2231.github.io/visuDSA/
+**Acesse:** https://eduardosantos2231.github.io/visuDSA/
 
-## Overview
+---
 
-VisuDSA é uma plataforma educacional criada para tornar o estudo de algoritmos e estruturas de dados mais acessível e visual. Aqui você pode acompanhar o funcionamento de algoritmos passo a passo, entender como estruturas de dados se comportam internamente e explorar conceitos fundamentais de forma interativa.
+## O que é
 
-O objetivo é reduzir a distância entre teoria e prática, permitindo que você veja uma representação visual do que acontece quando um algoritmo é executado.
+VisuDSA é uma plataforma educacional para aprender algoritmos e estruturas de dados através de representações visuais. O objetivo é tornar conceitos abstratos mais concretos com animações e explicações didáticas.
 
-## O que você encontrará
+## Por que
 
-- **Algoritmos** — Busca Linear, Busca Binária
-- **Estruturas de Dados** — Arrays, Pilhas
-- **Visualizações Interativas** — Animações passo a passo
+Estudar algoritmos e estruturas de dados pode ser desafiador quando os conceitos ficam apenas no papel. Ver como um array é ordenado, como uma árvore se organiza, ou como a busca binária funciona passo a passo ajuda a construir a intuição necessária para dominar esses tópicos.
+
+## Como usar
+
+Basta acessar o link acima e navegar pelas seções. Cada página contém explicações teóricas acompanhadas de visualizações interativas.
+
+## Tecnologias
+
+Astro · React · TypeScript · Tailwind CSS
