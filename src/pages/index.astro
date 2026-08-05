@@ -2,13 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search, Cpu, Layers, Network, Info } from '@lucide/astro';
-
-const navItems = [
-  { content: "Introdução", link: "/visuDSA/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
-  { content: "Algoritmos", link: "/visuDSA/algoritmos", Icon: Binary, label: "Visualize algoritmos em ação" },
-  { content: "E. de dados", link: "/visuDSA/estrutura-de-dados", Icon: Database, label: "Explore estruturas de dados" },
-];
+import { ArrowDown, Eye, Brain, Zap, Search, Info } from '@lucide/astro';
 
 const floatingElements = [
   { char: '{', x: '10%', y: '20%', delay: '0s' },
@@ -25,17 +19,11 @@ const floatingElements = [
   { char: '▲', x: '55%', y: '65%', delay: '1.4s' },
 ];
 
-const algorithmCards = [
-  { Icon: Search, title: "Busca", desc: "Linear & Binária" },
-  { Icon: Layers, title: "Ordenação", desc: "Bubble, Quick, Merge" },
-  { Icon: Network, title: "Grafos", desc: "DFS, BFS, Dijkstra" },
-  { Icon: Cpu, title: "Recursão", desc: "Fibonacci, Backtracking" },
-];
 ---
 
 <Layout title="Home">
   <Header />
-  <div class="flex flex-col">
+  <main class="flex flex-col">
     <!-- Seção Hero: Título + Navegação -->
     <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 relative overflow-hidden">
       <!-- Animated Background Elements -->
@@ -70,37 +58,6 @@ const algorithmCards = [
           Veja algoritmos e estruturas de dados em ação
         </p>
         
-        <nav class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10" aria-label="Navegação rápida">
-          {navItems.map((item, index) => (
-            <a 
-              href={item.link} 
-              aria-label={item.label}
-              class="nav-btn opacity-0 animate-fade-in group"
-              style={`animation-delay: ${0.5 + index * 0.1}s;`}
-            >
-              <span class="nav-btn-bg"></span>
-              <span class="nav-btn-glow"></span>
-              <span class="nav-btn-content">
-                <item.Icon class="size-4" aria-hidden="true" />
-                <span>{item.content}</span>
-              </span>
-            </a>
-          ))}
-        </nav>
-      </div>
-
-      <!-- Algorithm Preview Cards (decorative) -->
-      <div class="hero-cards hidden lg:flex absolute bottom-24 left-1/2 -translate-x-1/2 gap-4 opacity-0 animate-fade-in" style="animation-delay: 0.8s;">
-        {algorithmCards.map((card) => (
-          <div class="hero-card group">
-            <div class="hero-card-glow"></div>
-            <card.Icon class="size-5" aria-hidden="true" />
-            <div>
-              <div class="hero-card-title">{card.title}</div>
-              <div class="hero-card-desc">{card.desc}</div>
-            </div>
-          </div>
-        ))}
       </div>
 
       <!-- Indicador de Scroll -->
@@ -197,7 +154,7 @@ const algorithmCards = [
 
     <!-- Footer -->
     <Footer />
-  </div>
+  </main>
 </Layout>
 
 <style>
@@ -273,20 +230,6 @@ const algorithmCards = [
   max-width: 800px;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: oklch(0.22 0.04 296 / 0.3);
-  border: 1px solid oklch(0.35 0.06 290);
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  color: oklch(0.75 0.02 270);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 .hero-title {
   font-family: "Bitcount Grid Double", system-ui;
   font-optical-sizing: auto;
@@ -318,106 +261,6 @@ const algorithmCards = [
   letter-spacing: 0.02em;
 }
 
-/* Navigation Buttons */
-.nav-btn {
-  position: relative;
-  display: inline-block;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.nav-btn-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.nav-btn:hover .nav-btn-glow {
-  opacity: 1;
-}
-
-.nav-btn-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, oklch(0.22 0.04 296) 0%, oklch(0.18 0.03 280) 100%);
-  border: 1px solid oklch(0.35 0.06 290);
-  transition: all 0.3s ease;
-}
-
-.nav-btn:hover .nav-btn-bg {
-  background: linear-gradient(135deg, oklch(0.25 0.04 296) 0%, oklch(0.2 0.03 280) 100%);
-  border-color: oklch(1 0 0 / 0.3);
-  box-shadow: 0 0 20px oklch(1 0 0 / 0.1), 0 0 30px oklch(0.15 0.02 300 / 0.1);
-}
-
-.nav-btn-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  color: oklch(0.71 0.02 261);
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-}
-
-.nav-btn:hover .nav-btn-content {
-  color: oklch(0.92 0.01 145);
-}
-
-/* Hero Cards */
-.hero-cards {
-  position: absolute;
-  bottom: 6rem;
-}
-
-.hero-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: oklch(0.18 0.03 280 / 0.6);
-  border: 1px solid oklch(0.28 0.03 256);
-  color: oklch(0.71 0.02 261);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.hero-card-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.hero-card:hover {
-  border-color: oklch(1 0 0 / 0.3);
-  box-shadow: 0 0 20px oklch(1 0 0 / 0.1), 0 0 30px oklch(0.15 0.02 300 / 0.1);
-  transform: translateY(-2px);
-}
-
-.hero-card:hover .hero-card-glow {
-  opacity: 1;
-}
-
-.hero-card-title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: oklch(0.92 0.01 145);
-}
-
-.hero-card-desc {
-  font-size: 0.625rem;
-  color: oklch(0.56 0.02 261);
-}
-
 /* Scroll Indicator */
 .scroll-indicator {
   animation: scroll-bounce 2s ease-in-out infinite;
@@ -443,17 +286,6 @@ const algorithmCards = [
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, transparent, oklch(0.28 0.03 256), transparent);
-}
-
-.divider-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: oklch(0.18 0.03 280);
-  border: 1px solid oklch(0.28 0.03 256);
-  color: oklch(0.56 0.02 261);
 }
 
 /* Content Sections */
@@ -637,11 +469,6 @@ const algorithmCards = [
   }
 }
 
-@media (max-width: 1023px) {
-  .hero-cards {
-    display: none;
-  }
-}
 </style>
 
 <script>
