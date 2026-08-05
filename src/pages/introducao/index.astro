@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Subtitle from "../../components/Subtitle.astro";
+import Callout from "../../components/Callout.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
 import { Cpu, Clock, Gauge, ArrowRight, Infinity, Zap, GitBranch, TriangleAlert, Info } from '@lucide/astro';
 
@@ -39,20 +42,20 @@ const tocItems = [
         
         <!-- Introdução -->
         <section id="introducao" class="mb-12 scroll-mt-20">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Introdução a Algoritmos e Estruturas de Dados</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+      <PageHeader title="Introdução a Algoritmos e Estruturas de Dados">
+      <Subtitle>
         Entender algoritmos e estruturas de dados é fundamental para qualquer desenvolvedor. 
         Esta seção apresenta os conceitos básicos que servirão como fundamento para o 
         restante do conteúdo, abordando tanto algoritmos quanto a organização eficiente de dados.
-      </p>
+      </Subtitle>
+      </PageHeader>
     </section>
 
     <!-- O que é um algoritmo? -->
     <section id="o-que-e-algoritmo" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="O que é um algoritmo?">
         <Cpu slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O que é um algoritmo?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um algoritmo é simplesmente um conjunto de passos bem definidos para resolver um problema.
@@ -77,10 +80,9 @@ const tocItems = [
 
     <!-- Por que medir eficiência? -->
     <section id="por-que-medir-eficiencia" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Desempenho">
+      <SectionHeader label="Desempenho" title="Por que medir eficiência?">
         <Gauge slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Por que medir eficiência?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Quando analisamos um algoritmo, não basta dizer que ele executa "20 passos" ou "300 passos". 
@@ -99,10 +101,9 @@ const tocItems = [
 
     <!-- O que é a Notação Big O? -->
     <section id="o-que-e-notacao-big-o" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Teoria">
+      <SectionHeader label="Teoria" title="O que é a Notação Big O?">
         <Infinity slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O que é a Notação Big O?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A Notação Big O é uma forma de descrever como o número de operações de um algoritmo 
@@ -121,10 +122,9 @@ const tocItems = [
 
     <!-- O(1) - Tempo Constante -->
     <section id="tempo-constante" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Classificação">
+      <SectionHeader label="Classificação" title="O(1) — Tempo Constante">
         <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O(1) — Tempo Constante</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um algoritmo O(1) executa sempre o mesmo número de operações, independentemente 
@@ -142,10 +142,9 @@ const tocItems = [
 
     <!-- O(N) - Tempo Linear -->
     <section id="tempo-linear" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Classificação">
+      <SectionHeader label="Classificação" title="O(N) — Tempo Linear">
         <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O(N) — Tempo Linear</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um algoritmo O(N) executa um número de operações proporcional ao tamanho da entrada.
@@ -162,10 +161,9 @@ const tocItems = [
 
     <!-- O(N²) - Tempo Quadrático -->
     <section id="tempo-quadratico" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Classificação">
+      <SectionHeader label="Classificação" title="O(N²) — Tempo Quadrático">
         <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O(N²) — Tempo Quadrático</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um algoritmo O(N²) executa um número de operações proporcional ao quadrado da entrada.
@@ -182,10 +180,9 @@ const tocItems = [
 
     <!-- Algoritmos com mesma notação -->
     <section id="mesma-notacao" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Nuances">
+      <SectionHeader label="Nuances" title="Algoritmos com a mesma notação podem ter velocidades diferentes">
         <Clock slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Algoritmos com a mesma notação podem ter velocidades diferentes</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Dois algoritmos podem pertencer à mesma categoria Big O e ainda assim ter 
@@ -203,10 +200,9 @@ const tocItems = [
 
     <!-- Por que constantes são ignoradas? -->
     <section id="constantes-ignoradas" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Teoria">
+      <SectionHeader label="Teoria" title="Por que constantes são ignoradas?">
         <Infinity slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Por que constantes são ignoradas?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Big O foca no comportamento de crescimento a longo prazo. Constantes não 
@@ -225,10 +221,9 @@ const tocItems = [
 
     <!-- Big O considera o pior caso -->
     <section id="pior-caso" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Análise">
+      <SectionHeader label="Análise" title="Big O considera o pior caso">
         <TriangleAlert slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Big O considera o pior caso</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Por padrão, quando classificamos um algoritmo usando Big O, estamos considerando 
@@ -247,10 +242,9 @@ const tocItems = [
 
     <!-- Crescimento comparativo -->
     <section id="crescimento-comparativo" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Comparação">
+      <SectionHeader label="Comparação" title="Crescimento comparativo">
         <Gauge slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Crescimento comparativo</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           À medida que o tamanho da entrada aumenta, o comportamento das principais 
@@ -269,10 +263,9 @@ const tocItems = [
 
     <!-- O(log n) - Tempo Logarítmico -->
     <section id="tempo-logaritmico" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Classificação">
+      <SectionHeader label="Classificação" title="O(log n) — Tempo Logarítmico">
         <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O(log n) — Tempo Logarítmico</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um algoritmo O(log n) reduz pela metade o problema a cada etapa.
@@ -290,12 +283,10 @@ const tocItems = [
     </section>
 
     <!-- Outras notações Big O -->
-    <section id="outras-notacoes" class="mb-12 scroll-mt-20 bg-secondary/30 border-l-4 border-accent rounded-r-lg p-5">
-      <div class="flex items-center gap-2 text-accent mb-3">
-        <Info class="size-5" />
-        <span class="text-sm font-semibold uppercase tracking-wider">Nota</span>
-      </div>
-      <h3 class="text-xl font-medium text-primary mb-3">Outras notações Big O</h3>
+    <section id="outras-notacoes" class="mb-12 scroll-mt-20">
+      <Callout label="Nota">
+        <Info slot="icon" class="size-5" />
+        <h2 class="text-xl font-semibold text-primary mb-3">Outras notações Big O</h2>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           As classificações apresentadas nesta página (O(1), O(N), O(N²), O(log n)) são as mais comuns,
@@ -310,23 +301,23 @@ const tocItems = [
           recomenda-se aprofundamento com fontes complementares.
         </p>
       </div>
+      </Callout>
     </section>
 
     <!-- Introdução a Estruturas de Dados -->
     <section id="estrutura-de-dados" class="mb-12 scroll-mt-20">
-      <h2 class="text-2xl font-bold text-primary mb-4">Introdução à Estrutura de Dados</h2>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+      <SectionHeader title="Introdução à Estrutura de Dados" />
+      <Subtitle>
         Todos os programas trabalham com dados e manipulação de dados.
         A forma como esses dados são organizados recebe o nome de estrutura de dados.
-      </p>
+      </Subtitle>
     </section>
 
     <!-- O que é uma estrutura de dados? -->
     <section id="estrutura-de-dados-intro" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="O que é uma estrutura de dados?">
         <Cpu slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O que é uma estrutura de dados?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Uma estrutura de dados é a forma como os dados são organizados na memória para que 
@@ -342,10 +333,9 @@ const tocItems = [
 
     <!-- Organização impacta desempenho -->
     <section id="organizacao-desempenho" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Desempenho">
+      <SectionHeader label="Desempenho" title="Organização impacta desempenho">
         <Gauge slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Organização impacta desempenho</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A forma como os dados são organizados pode fazer seu programa rodar de forma rápida e fluida, 
@@ -361,10 +351,9 @@ const tocItems = [
 
     <!-- Escalabilidade e carga real -->
     <section id="escalabilidade" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Escalabilidade">
+      <SectionHeader label="Escalabilidade" title="Escalabilidade e carga real">
         <ArrowRight slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Escalabilidade e carga real</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Quando lidamos com poucos dados, a diferença pode parecer irrelevante. Mas em cenários como 
@@ -381,10 +370,9 @@ const tocItems = [
 
     <!-- Estruturas de dados e eficiência -->
     <section id="eficiencia" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Eficiência">
+      <SectionHeader label="Eficiência" title="Estruturas de dados e eficiência">
         <Zap slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Estruturas de dados e eficiência</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Cada estrutura de dados possui características próprias que influenciam o custo das operações.
@@ -399,10 +387,9 @@ const tocItems = [
 
     <!-- Impacto na qualidade do código -->
     <section id="qualidade-codigo" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Qualidade">
+      <SectionHeader label="Qualidade" title="Impacto na qualidade do código">
         <GitBranch slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Impacto na qualidade do código</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Compreender estruturas de dados não melhora apenas a velocidade do programa. Também permite 

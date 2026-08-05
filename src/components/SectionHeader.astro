@@ -1,14 +1,20 @@
 ---
 interface Props {
+  title: string;
   label?: string;
 }
 
-const { label } = Astro.props;
+const { title, label } = Astro.props;
 ---
 
-<div class="flex items-center gap-0.5 text-primary mb-2">
-  <slot name="icon" />
+<header class="mb-5">
   {label && (
-    <h2 class="text-xs font-semibold uppercase tracking-wide text-primary">{label}</h2>
+    <div class="flex items-center gap-2 text-accent mb-2">
+      <span class="flex size-4 items-center justify-center" aria-hidden="true">
+        <slot name="icon" />
+      </span>
+      <span class="text-xs font-semibold uppercase tracking-wider">{label}</span>
+    </div>
   )}
-</div>
+  <h2 class="text-xl md:text-2xl font-semibold tracking-tight text-primary">{title}</h2>
+</header>

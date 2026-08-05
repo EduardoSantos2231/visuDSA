@@ -1,5 +1,5 @@
 ---
-import { GitBranch, Github, Linkedin } from '@lucide/astro';
+import { Github, Linkedin } from '@lucide/astro';
 ---
 
 <footer class="px-4 py-8 border-t border-dashed border-primary/30">
@@ -12,7 +12,7 @@ import { GitBranch, Github, Linkedin } from '@lucide/astro';
         aria-label="GitHub"
         class="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors"
       >
-        <Github class="size-5" />
+        <Github class="size-5" aria-hidden="true" />
         <span class="text-sm">GitHub</span>
       </a>
       <a 
@@ -22,7 +22,7 @@ import { GitBranch, Github, Linkedin } from '@lucide/astro';
         aria-label="LinkedIn"
         class="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors"
       >
-        <Linkedin class="size-5" />
+        <Linkedin class="size-5" aria-hidden="true" />
         <span class="text-sm">LinkedIn</span>
       </a>
     </div>

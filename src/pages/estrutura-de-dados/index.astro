@@ -3,20 +3,21 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Card from "../../components/Card.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Subtitle from "../../components/Subtitle.astro";
 import { List, Layers, MoveDown, Sparkles, Hash, Network, GitBranch, Clock } from '@lucide/astro';
 ---
 
 <Layout title="Estrutura de Dados">
   <Header />
   <main class="px-4 py-8 max-w-6xl mx-auto">
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Estruturas de Dados</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+    <PageHeader title="Estruturas de Dados">
+      <Subtitle>
         Uma estrutura de dados é a forma como os dados são organizados na memória para que 
         possam ser acessados e manipulados de maneira eficiente. Escolher a estrutura correta 
         pode impactar significativamente o desempenho de um programa.
-      </p>
-    </section>
+      </Subtitle>
+    </PageHeader>
 
     <section class="mb-12">
       <h2 class="text-xl font-semibold text-primary mb-6">Estruturas Lineares</h2>
@@ -59,7 +60,7 @@ import { List, Layers, MoveDown, Sparkles, Hash, Network, GitBranch, Clock } fro
         <div class="relative">
           <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
             <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
-              <Clock class="size-4" />
+              <Clock class="size-4" aria-hidden="true" />
               <span class="text-sm font-medium">Em breve</span>
             </div>
           </div>
@@ -95,7 +96,7 @@ import { List, Layers, MoveDown, Sparkles, Hash, Network, GitBranch, Clock } fro
         <div class="relative">
           <div class="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
             <div class="flex items-center gap-2 text-muted-foreground bg-card border border-border px-4 py-2 rounded-full">
-              <Clock class="size-4" />
+              <Clock class="size-4" aria-hidden="true" />
               <span class="text-sm font-medium">Em breve</span>
             </div>
           </div>

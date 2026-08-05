@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Subtitle from "../../components/Subtitle.astro";
+import Callout from "../../components/Callout.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
 import CodeTerminal from '../../components/CodeTerminal.astro';
 import { Database, Calculator, Eye, AlertTriangle, Gauge, Lightbulb, ListOrdered } from '@lucide/astro';
@@ -26,18 +29,16 @@ const tocItems = [
       
       <main class="flex-1 min-w-0 max-w-4xl">
         
-        <section class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Hash Table</h1>
-          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        <PageHeader title="Hash Table">
+          <Subtitle>
             Uma estrutura de dados que permite armazenar e acessar informações de forma extremamente rápida.
-          </p>
-        </section>
+          </Subtitle>
+        </PageHeader>
 
         <section id="definicao" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Conceito">
+          <SectionHeader label="Conceito" title="O que é uma Hash Table?">
             <Database slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">O que é uma Hash Table?</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               Uma <span class="text-primary font-medium">hash table</span> é uma estrutura de dados que permite armazenar e acessar informações de forma extremamente rápida.
@@ -55,10 +56,9 @@ const tocItems = [
         </section>
 
         <section id="hashing" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Funcionamento">
+          <SectionHeader label="Funcionamento" title="Como funciona o Hashing?">
             <Calculator slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Como funciona o Hashing?</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               O funcionamento da hash table é baseado em um processo chamado <span class="text-primary font-medium">hashing</span>.
@@ -85,10 +85,9 @@ const tocItems = [
         </section>
 
         <section id="acesso" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Operações">
+          <SectionHeader label="Operações" title="Acesso aos dados">
             <Eye slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Acesso aos dados</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               Graças ao hashing, operações como:
@@ -101,9 +100,7 @@ const tocItems = [
             <p class="mt-4">
               podem ser realizadas de forma direta.
             </p>
-            <p class="mt-4">
-              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">Complexidade média: O(1)</span>
-            </p>
+            <Callout class="mt-4" variant="metric">Complexidade média: O(1)</Callout>
             <p>
               Isso significa que o tempo de acesso não depende da quantidade de elementos armazenados. Mesmo com muitos dados, o acesso continua rápido.
             </p>
@@ -111,10 +108,9 @@ const tocItems = [
         </section>
 
         <section id="colisoes" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Colisões">
+          <SectionHeader label="Colisões" title="Colisões">
             <AlertTriangle slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Colisões</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               Um ponto importante das hash tables é que <span class="text-primary font-medium">diferentes chaves podem gerar o mesmo índice</span>.
@@ -149,10 +145,9 @@ const tocItems = [
         </section>
 
         <section id="eficiencia" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Desempenho">
+          <SectionHeader label="Desempenho" title="Eficiência Algorítmica">
             <Gauge slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Eficiência Algorítmica</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               Em condições ideais, a hash table possui:
@@ -165,9 +160,7 @@ const tocItems = [
             <p class="mt-4">
               No entanto, em casos extremos (muitas colisões), pode ocorrer degradação:
             </p>
-            <p class="mt-2">
-              <span class="font-mono text-lg bg-secondary px-3 py-1 rounded">operações podem chegar a O(N)</span>
-            </p>
+            <Callout class="mt-2" variant="warning">Operações podem chegar a O(N).</Callout>
             <p>
               Isso acontece quando muitos elementos acaban na mesma posição, tornando necessário percorrer vários itens.
             </p>
@@ -183,10 +176,9 @@ const tocItems = [
         </section>
 
         <section id="quando-usar" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Aplicações">
+          <SectionHeader label="Aplicações" title="Quando usar uma Hash Table?">
             <Lightbulb slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Quando usar uma Hash Table?</h3>
           <div class="text-muted-foreground text-sm space-y-3 text-justify">
             <p>
               Hash tables são ideais quando é necessário:
@@ -209,17 +201,17 @@ const tocItems = [
         </section>
 
         <section id="resumo" class="mb-12 scroll-mt-20">
-          <SectionHeader label="Resumo">
+          <SectionHeader label="Resumo" title="Resumo de Complexidades">
             <ListOrdered slot="icon" class="size-3" />
           </SectionHeader>
-          <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
           <div class="text-muted-foreground text-sm">
             <div class="overflow-x-auto">
               <table class="w-full text-left border-collapse">
+                <caption class="sr-only">Complexidade das operações de uma hash table</caption>
                 <thead>
                   <tr class="border-b border-border">
-                    <th class="py-3 px-4 font-semibold text-primary">Operação</th>
-                    <th class="py-3 px-4 font-semibold text-primary">Complexidade (média)</th>
+                    <th scope="col" class="py-3 px-4 font-semibold text-primary">Operação</th>
+                    <th scope="col" class="py-3 px-4 font-semibold text-primary">Complexidade (média)</th>
                   </tr>
                 </thead>
                 <tbody>

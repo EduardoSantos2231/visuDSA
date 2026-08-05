@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Subtitle from "../../components/Subtitle.astro";
+import Callout from "../../components/Callout.astro";
 import BinarySearchVisualizer from '../../components/visualizer/BinarySearchVisualizer';
 import { Search } from '@lucide/astro';
 ---
@@ -11,25 +14,23 @@ import { Search } from '@lucide/astro';
   <Header />
   <main class="px-4 py-8 max-w-4xl mx-auto">
     
-    <section class="mb-12">
+    <PageHeader title="Busca Binária">
+      <Subtitle>
+        A <span class="text-primary font-medium">busca binária</span> é um algoritmo utilizado para encontrar elementos de forma extremamente eficiente em <span class="text-primary font-medium">arrays ordenados</span>.
+      </Subtitle>
+      <Subtitle class="mt-4">
+        Diferente da busca linear, que percorre os elementos um a um, a busca binária utiliza a <span class="text-primary font-medium">ordem dos dados</span> para reduzir drasticamente a quantidade de comparações necessárias.
+      </Subtitle>
+    </PageHeader>
+
+    <section class="mb-12" aria-label="Visualização interativa da busca binária">
       <BinarySearchVisualizer client:load />
     </section>
 
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Busca Binária</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
-        A <span class="text-primary font-medium">busca binária</span> é um algoritmo utilizado para encontrar elementos de forma extremamente eficiente em <span class="text-primary font-medium">arrays ordenados</span>.
-      </p>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
-        Diferente da busca linear, que percorre os elementos um a um, a busca binária utiliza a <span class="text-primary font-medium">ordem dos dados</span> para reduzir drasticamente a quantidade de comparações necessárias.
-      </p>
-    </section>
-
     <section class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="Como funciona">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h2 class="text-xl font-semibold text-primary mb-4">Como funciona</h2>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A ideia central da busca binária é simples: <span class="text-primary font-medium">sempre olhar para o elemento do meio da estrutura</span>.
@@ -50,10 +51,9 @@ import { Search } from '@lucide/astro';
     </section>
 
     <section class="mb-12 scroll-mt-20">
-      <SectionHeader label="Exemplo">
+      <SectionHeader label="Exemplo" title="Exemplo">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h2 class="text-xl font-semibold text-primary mb-4">Exemplo</h2>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Considere o seguinte array ordenado:
@@ -72,10 +72,9 @@ import { Search } from '@lucide/astro';
     </section>
 
     <section class="mb-12 scroll-mt-20">
-      <SectionHeader label="Análise">
+      <SectionHeader label="Análise" title="Número de passos">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h2 class="text-xl font-semibold text-primary mb-4">Número de passos</h2>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A grande vantagem da busca binária aparece quando analisamos <span class="text-primary font-medium">quantos passos são necessários para encontrar um valor</span>.
@@ -86,11 +85,12 @@ import { Search } from '@lucide/astro';
         <p>
           Por exemplo:
         </p>
-        <table class="w-full border-collapse mt-4">
-          <thead>
-            <tr class="border-b border-border">
-              <th class="text-left py-2 pr-4 text-primary font-medium">Número de elementos</th>
-              <th class="text-left py-2 text-primary font-medium">Máximo de passos</th>
+          <table class="w-full border-collapse mt-4">
+            <caption class="sr-only">Número de elementos e máximo de passos na busca binária</caption>
+            <thead>
+              <tr class="border-b border-border">
+                <th scope="col" class="text-left py-2 pr-4 text-primary font-medium">Número de elementos</th>
+                <th scope="col" class="text-left py-2 text-primary font-medium">Máximo de passos</th>
             </tr>
           </thead>
           <tbody>
@@ -123,26 +123,23 @@ import { Search } from '@lucide/astro';
     </section>
 
     <section class="mb-12 scroll-mt-20">
-      <SectionHeader label="Análise">
+      <SectionHeader label="Análise" title="Complexidade">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h2 class="text-xl font-semibold text-primary mb-4">Complexidade</h2>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A complexidade da busca binária é:
         </p>
-        <p class="font-mono text-lg bg-secondary px-3 py-2 rounded-lg text-center text-primary">
-          O(log N)
-        </p>
+        <Callout variant="metric">O(log N)</Callout>
         <p>
           Isso significa que o número de passos cresce de forma <span class="text-primary font-medium">logarítmica</span> em relação ao tamanho da estrutura.
         </p>
         <p>
           Na prática, isso torna a busca binária extremamente eficiente para grandes volumes de dados.
         </p>
-        <p class="text-primary font-medium mt-4">
-          Requisito fundamental: o array deve estar ordenado!
-        </p>
+        <Callout variant="warning" label="Requisito fundamental">
+          O array deve estar ordenado.
+        </Callout>
       </div>
     </section>
 

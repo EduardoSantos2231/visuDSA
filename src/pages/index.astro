@@ -2,13 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search, Code2, Cpu, Layers, Hash } from '@lucide/astro';
-
-const navItems = [
-  { content: "Introdução", link: "/visuDSA/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
-  { content: "Algoritmos", link: "/visuDSA/algoritmos", Icon: Binary, label: "Visualize algoritmos em ação" },
-  { content: "E. de dados", link: "/visuDSA/estrutura-de-dados", Icon: Database, label: "Explore estruturas de dados" },
-];
+import { ArrowDown, Eye, Brain, Zap, Search, Info } from '@lucide/astro';
 
 const floatingElements = [
   { char: '{', x: '10%', y: '20%', delay: '0s' },
@@ -25,17 +19,11 @@ const floatingElements = [
   { char: '▲', x: '55%', y: '65%', delay: '1.4s' },
 ];
 
-const algorithmCards = [
-  { Icon: Search, title: "Busca", desc: "Linear & Binária" },
-  { Icon: Layers, title: "Ordenação", desc: "Bubble, Quick, Merge" },
-  { Icon: Hash, title: "Grafos", desc: "DFS, BFS, Dijkstra" },
-  { Icon: Cpu, title: "Recursão", desc: "Fibonacci, Backtracking" },
-];
 ---
 
 <Layout title="Home">
   <Header />
-  <div class="flex flex-col">
+  <main class="flex flex-col">
     <!-- Seção Hero: Título + Navegação -->
     <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 relative overflow-hidden">
       <!-- Animated Background Elements -->
@@ -70,37 +58,6 @@ const algorithmCards = [
           Veja algoritmos e estruturas de dados em ação
         </p>
         
-        <nav class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10" aria-label="Navegação rápida">
-          {navItems.map((item, index) => (
-            <a 
-              href={item.link} 
-              aria-label={item.label}
-              class="nav-btn opacity-0 animate-fade-in group"
-              style={`animation-delay: ${0.5 + index * 0.1}s;`}
-            >
-              <span class="nav-btn-bg"></span>
-              <span class="nav-btn-glow"></span>
-              <span class="nav-btn-content">
-                <item.Icon class="size-4" aria-hidden="true" />
-                <span>{item.content}</span>
-              </span>
-            </a>
-          ))}
-        </nav>
-      </div>
-
-      <!-- Algorithm Preview Cards (decorative) -->
-      <div class="hero-cards hidden lg:flex absolute bottom-24 left-1/2 -translate-x-1/2 gap-4 opacity-0 animate-fade-in" style="animation-delay: 0.8s;">
-        {algorithmCards.map((card) => (
-          <div class="hero-card group">
-            <div class="hero-card-glow"></div>
-            <card.Icon class="size-5" />
-            <div>
-              <div class="hero-card-title">{card.title}</div>
-              <div class="hero-card-desc">{card.desc}</div>
-            </div>
-          </div>
-        ))}
       </div>
 
       <!-- Indicador de Scroll -->
@@ -157,10 +114,10 @@ const algorithmCards = [
         </p>
         <p>Aqui você poderá:</p>
         <ul class="feature-list">
-          <li><Eye class="feature-icon" /> visualizar o funcionamento de algoritmos passo a passo</li>
-          <li><Brain class="feature-icon" /> entender como estruturas de dados se comportam internamente</li>
-          <li><Zap class="feature-icon" /> testar operações e observar como elas afetam a complexidade do algoritmo</li>
-          <li><Search class="feature-icon" /> explorar conceitos fundamentais de forma interativa</li>
+           <li><Eye class="feature-icon" aria-hidden="true" /> visualizar o funcionamento de algoritmos passo a passo</li>
+           <li><Brain class="feature-icon" aria-hidden="true" /> entender como estruturas de dados se comportam internamente</li>
+           <li><Zap class="feature-icon" aria-hidden="true" /> testar operações e observar como elas afetam a complexidade do algoritmo</li>
+           <li><Search class="feature-icon" aria-hidden="true" /> explorar conceitos fundamentais de forma interativa</li>
         </ul>
         <p>
           O objetivo é reduzir a distância entre <strong>teoria e prática</strong>, permitindo que você veja <strong>uma representação visual do que acontece</strong> quando um algoritmo é executado.
@@ -179,7 +136,7 @@ const algorithmCards = [
       <div class="scroll-content fade">
         <div class="notice-box">
           <div class="notice-header">
-            <span class="notice-icon">i</span>
+             <Info class="notice-icon" aria-hidden="true" />
             <h2 class="section-title">Aviso importante</h2>
           </div>
           <p>
@@ -197,7 +154,7 @@ const algorithmCards = [
 
     <!-- Footer -->
     <Footer />
-  </div>
+  </main>
 </Layout>
 
 <style>
@@ -209,36 +166,56 @@ const algorithmCards = [
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  isolation: isolate;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 8% 12%;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, oklch(0.4 0.12 280 / 0.22), transparent 68%);
+  filter: blur(18px);
+  animation: hero-pulse 4s ease-in-out infinite;
 }
 
 .floating-char {
   position: absolute;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 1.25rem;
-  color: oklch(0.35 0.06 290 / 0.3);
-  animation: float 8s ease-in-out infinite;
+  z-index: 1;
+  font-size: clamp(1.1rem, 2vw, 2rem);
+  color: oklch(0.65 0.12 280 / 0.62);
+  text-shadow: 0 0 18px oklch(0.65 0.12 280 / 0.42);
+  animation: float 5s ease-in-out infinite;
   user-select: none;
 }
 
 @keyframes float {
   0%, 100% { 
     transform: translateY(0) rotate(0deg); 
-    opacity: 0.3;
+    opacity: 0.45;
   }
   50% { 
-    transform: translateY(-20px) rotate(5deg); 
-    opacity: 0.6;
+    transform: translateY(-28px) rotate(7deg) scale(1.08);
+    opacity: 0.95;
   }
+}
+
+@keyframes hero-pulse {
+  0%, 100% { transform: scale(0.88); opacity: 0.45; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
 .hero-grid {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image: 
-    linear-gradient(oklch(0.28 0.03 256 / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.28 0.03 256 / 0.05) 1px, transparent 1px);
+    linear-gradient(oklch(0.45 0.08 280 / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.45 0.08 280 / 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 70%);
+  animation: grid-shift 12s linear infinite;
 }
 
 .sorting-viz {
@@ -246,45 +223,41 @@ const algorithmCards = [
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40%;
+  z-index: 1;
+  height: 55%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   padding: 0 10%;
-  opacity: 0.15;
+  opacity: 0.35;
+  mask-image: linear-gradient(to top, black 35%, transparent 100%);
 }
 
 .sort-bar {
   flex: 1;
-  max-width: 20px;
-  background: linear-gradient(to top, oklch(0.55 0.12 280), oklch(0.35 0.08 280));
-  animation: sort-pulse 3s ease-in-out infinite;
+  max-width: 28px;
+  background: linear-gradient(to top, oklch(0.55 0.12 280), oklch(0.78 0.15 300));
+  box-shadow: 0 0 18px oklch(0.65 0.12 280 / 0.4);
+  transform-origin: bottom;
+  animation: sort-pulse 1.8s ease-in-out infinite;
 }
 
 @keyframes sort-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+  0%, 100% { opacity: 0.45; transform: scaleY(0.58); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes grid-shift {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
 }
 
 /* Hero Content */
 .hero-content {
   text-align: center;
   max-width: 800px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: oklch(0.22 0.04 296 / 0.3);
-  border: 1px solid oklch(0.35 0.06 290);
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  color: oklch(0.75 0.02 270);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  animation: hero-breathe 6s ease-in-out infinite;
 }
 
 .hero-title {
@@ -304,11 +277,22 @@ const algorithmCards = [
 
 .title-accent {
   color: oklch(0.65 0.12 280);
-  transition: text-shadow 0.3s ease;
+  text-shadow: 0 0 18px oklch(0.65 0.12 280 / 0.5);
+  animation: title-glow 2.6s ease-in-out infinite;
 }
 
 .title-accent:hover {
   text-shadow: 0 0 20px oklch(0.65 0.12 280 / 0.5), 0 0 40px oklch(0.65 0.12 280 / 0.3);
+}
+
+@keyframes hero-breathe {
+  0%, 100% { filter: drop-shadow(0 0 0 oklch(0.65 0.12 280 / 0)); }
+  50% { filter: drop-shadow(0 0 24px oklch(0.65 0.12 280 / 0.16)); }
+}
+
+@keyframes title-glow {
+  0%, 100% { text-shadow: 0 0 18px oklch(0.65 0.12 280 / 0.4); }
+  50% { text-shadow: 0 0 34px oklch(0.65 0.12 280 / 0.85); }
 }
 
 .hero-subtitle {
@@ -316,106 +300,6 @@ const algorithmCards = [
   font-size: 1.125rem;
   color: oklch(0.71 0.02 261);
   letter-spacing: 0.02em;
-}
-
-/* Navigation Buttons */
-.nav-btn {
-  position: relative;
-  display: inline-block;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.nav-btn-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.nav-btn:hover .nav-btn-glow {
-  opacity: 1;
-}
-
-.nav-btn-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, oklch(0.22 0.04 296) 0%, oklch(0.18 0.03 280) 100%);
-  border: 1px solid oklch(0.35 0.06 290);
-  transition: all 0.3s ease;
-}
-
-.nav-btn:hover .nav-btn-bg {
-  background: linear-gradient(135deg, oklch(0.25 0.04 296) 0%, oklch(0.2 0.03 280) 100%);
-  border-color: oklch(1 0 0 / 0.3);
-  box-shadow: 0 0 20px oklch(1 0 0 / 0.1), 0 0 30px oklch(0.15 0.02 300 / 0.1);
-}
-
-.nav-btn-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  color: oklch(0.71 0.02 261);
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-}
-
-.nav-btn:hover .nav-btn-content {
-  color: oklch(0.92 0.01 145);
-}
-
-/* Hero Cards */
-.hero-cards {
-  position: absolute;
-  bottom: 6rem;
-}
-
-.hero-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: oklch(0.18 0.03 280 / 0.6);
-  border: 1px solid oklch(0.28 0.03 256);
-  color: oklch(0.71 0.02 261);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.hero-card-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.hero-card:hover {
-  border-color: oklch(1 0 0 / 0.3);
-  box-shadow: 0 0 20px oklch(1 0 0 / 0.1), 0 0 30px oklch(0.15 0.02 300 / 0.1);
-  transform: translateY(-2px);
-}
-
-.hero-card:hover .hero-card-glow {
-  opacity: 1;
-}
-
-.hero-card-title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: oklch(0.92 0.01 145);
-}
-
-.hero-card-desc {
-  font-size: 0.625rem;
-  color: oklch(0.56 0.02 261);
 }
 
 /* Scroll Indicator */
@@ -443,17 +327,6 @@ const algorithmCards = [
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, transparent, oklch(0.28 0.03 256), transparent);
-}
-
-.divider-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: oklch(0.18 0.03 280);
-  border: 1px solid oklch(0.28 0.03 256);
-  color: oklch(0.56 0.02 261);
 }
 
 /* Content Sections */
@@ -637,11 +510,27 @@ const algorithmCards = [
   }
 }
 
-@media (max-width: 1023px) {
-  .hero-cards {
-    display: none;
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg::before,
+  .floating-char,
+  .hero-grid,
+  .sort-bar,
+  .hero-content,
+  .title-accent,
+  .scroll-indicator,
+  .scroll-content,
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none;
+    transition: none;
+  }
+
+  .scroll-content {
+    opacity: 1;
+    transform: none;
   }
 }
+
 </style>
 
 <script>
