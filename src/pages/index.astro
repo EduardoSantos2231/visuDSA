@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search, Code2, Cpu, Layers, Hash } from '@lucide/astro';
+import { GraduationCap, Binary, Database, ArrowDown, Eye, Brain, Zap, Search, Cpu, Layers, Network, Info } from '@lucide/astro';
 
 const navItems = [
   { content: "Introdução", link: "/visuDSA/introducao", Icon: GraduationCap, label: "Aprenda os conceitos fundamentais" },
@@ -28,7 +28,7 @@ const floatingElements = [
 const algorithmCards = [
   { Icon: Search, title: "Busca", desc: "Linear & Binária" },
   { Icon: Layers, title: "Ordenação", desc: "Bubble, Quick, Merge" },
-  { Icon: Hash, title: "Grafos", desc: "DFS, BFS, Dijkstra" },
+  { Icon: Network, title: "Grafos", desc: "DFS, BFS, Dijkstra" },
   { Icon: Cpu, title: "Recursão", desc: "Fibonacci, Backtracking" },
 ];
 ---
@@ -94,7 +94,7 @@ const algorithmCards = [
         {algorithmCards.map((card) => (
           <div class="hero-card group">
             <div class="hero-card-glow"></div>
-            <card.Icon class="size-5" />
+            <card.Icon class="size-5" aria-hidden="true" />
             <div>
               <div class="hero-card-title">{card.title}</div>
               <div class="hero-card-desc">{card.desc}</div>
@@ -157,10 +157,10 @@ const algorithmCards = [
         </p>
         <p>Aqui você poderá:</p>
         <ul class="feature-list">
-          <li><Eye class="feature-icon" /> visualizar o funcionamento de algoritmos passo a passo</li>
-          <li><Brain class="feature-icon" /> entender como estruturas de dados se comportam internamente</li>
-          <li><Zap class="feature-icon" /> testar operações e observar como elas afetam a complexidade do algoritmo</li>
-          <li><Search class="feature-icon" /> explorar conceitos fundamentais de forma interativa</li>
+           <li><Eye class="feature-icon" aria-hidden="true" /> visualizar o funcionamento de algoritmos passo a passo</li>
+           <li><Brain class="feature-icon" aria-hidden="true" /> entender como estruturas de dados se comportam internamente</li>
+           <li><Zap class="feature-icon" aria-hidden="true" /> testar operações e observar como elas afetam a complexidade do algoritmo</li>
+           <li><Search class="feature-icon" aria-hidden="true" /> explorar conceitos fundamentais de forma interativa</li>
         </ul>
         <p>
           O objetivo é reduzir a distância entre <strong>teoria e prática</strong>, permitindo que você veja <strong>uma representação visual do que acontece</strong> quando um algoritmo é executado.
@@ -179,7 +179,7 @@ const algorithmCards = [
       <div class="scroll-content fade">
         <div class="notice-box">
           <div class="notice-header">
-            <span class="notice-icon">i</span>
+             <Info class="notice-icon" aria-hidden="true" />
             <h2 class="section-title">Aviso importante</h2>
           </div>
           <p>

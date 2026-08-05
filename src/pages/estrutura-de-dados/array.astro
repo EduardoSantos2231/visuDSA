@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Subtitle from "../../components/Subtitle.astro";
+import Callout from "../../components/Callout.astro";
 import TableOfContents from '../../components/TableOfContents.astro';
 import CodeTerminal from '../../components/CodeTerminal.astro';
 import { List, Cpu, Search, Plus, Trash2, Table2, ListOrdered } from '@lucide/astro';
@@ -31,24 +34,22 @@ const tocItems = [
       
       <main class="flex-1 min-w-0 max-w-4xl">
         
-        <section class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Array</h1>
-          <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+        <PageHeader title="Array">
+          <Subtitle>
             Um array é uma estrutura de dados que armazena elementos em posições contíguas de memória, permitindo acesso direto a qualquer índice.
-          </p>
-          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+          </Subtitle>
+          <Subtitle class="mt-4">
             Nesta seção estamos tratando de arrays em seu modelo conceitual básico, onde os elementos ocupam posições consecutivas na memória. Dependendo da linguagem ou implementação, arrays podem ter tamanho fixo (arrays estáticos) ou capacidade de redimensionamento (arrays dinâmicos).
-          </p>
-          <p class="text-muted-foreground text-lg text-justify leading-relaxed mt-4">
+          </Subtitle>
+          <Subtitle class="mt-4">
             Independentemente disso, a forma como os elementos são armazenados em memória é a mesma: cada posição do array ocupa um espaço sequencial e pode ser acessada diretamente por meio de um índice.
-          </p>
-        </section>
+          </Subtitle>
+        </PageHeader>
 
     <section id="definicao" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="O que são Arrays?">
         <List slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O que são Arrays?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um array é uma coleção de elementos armazenados <span class="text-primary font-medium">de forma contígua na memória</span>, 
@@ -69,10 +70,9 @@ const tocItems = [
     </section>
 
     <section id="memoria" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Memória">
+      <SectionHeader label="Memória" title="Como Arrays Funcionam na Memória">
         <Cpu slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Como Arrays Funcionam na Memória</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Todo array possui um endereço base, que é o endereço do primeiro elemento.
@@ -80,9 +80,9 @@ const tocItems = [
         <p>
           Para acessar qualquer posição, o computador utiliza a seguinte lógica:
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           endereço do elemento = endereço_base + (índice × tamanho_do_tipo)
-        </p>
+        </Callout>
         <p>
           Ou seja, ele não precisa percorrer o array. Ele simplesmente calcula o endereço 
           exato e acessa diretamente.
@@ -91,17 +91,16 @@ const tocItems = [
     </section>
 
     <section id="leitura" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Acesso">
+      <SectionHeader label="Acesso" title="Leitura (Acesso por Índice)">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Leitura (Acesso por Índice)</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Acessar um elemento pelo índice é uma operação de <span class="text-primary font-medium">tempo constante</span>.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(1)
-        </p>
+        </Callout>
         <p>
           Isso significa que, independentemente do array ter 10 ou 1 milhão de elementos, 
           o custo da operação é o mesmo. O computador sabe exatamente onde ir.
@@ -110,10 +109,9 @@ const tocItems = [
     </section>
 
     <section id="insercao" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Inserção">
+      <SectionHeader label="Inserção" title="Inserção">
         <Plus slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Inserção</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Como os elementos estão em posições contíguas e não podem existir espaços entre eles, 
@@ -125,9 +123,9 @@ const tocItems = [
           Se houver espaço disponível no bloco alocado, basta colocar o novo elemento na 
           próxima posição e nenhum deslocamento é necessário.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(1)
-        </p>
+        </Callout>
 
         <h4 class="text-primary font-medium mt-4">Inserção no Início ou no Meio</h4>
         <p>
@@ -135,17 +133,16 @@ const tocItems = [
           e o array precisa abrir espaço para o novo item. Se o array possui N elementos, 
           pode ser necessário mover até N elementos.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(N)
-        </p>
+        </Callout>
       </div>
     </section>
 
     <section id="delecao" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Remoção">
+      <SectionHeader label="Remoção" title="Deleção">
         <Trash2 slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Deleção</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A lógica é semelhante à inserção.
@@ -155,18 +152,18 @@ const tocItems = [
         <p>
           Basta reduzir o tamanho lógico do array e nenhum deslocamento é necessário.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(1)
-        </p>
+        </Callout>
 
         <h4 class="text-primary font-medium mt-4">Deleção no Início ou no Meio</h4>
         <p>
           Os elementos seguintes precisam recuar uma posição e pode ser necessário 
           deslocar N − 1 elementos.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(N)
-        </p>
+        </Callout>
         <p>
           Se a remoção for no meio, em média deslocamos aproximadamente N/2 elementos, 
           mas em análise Big O isso continua sendo O(N), pois constantes são desconsideradas.
@@ -175,10 +172,9 @@ const tocItems = [
     </section>
 
     <section id="busca" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Busca">
+      <SectionHeader label="Busca" title="Busca">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Busca</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <h4 class="text-primary font-medium">Busca Linear</h4>
         <p>
@@ -188,9 +184,9 @@ const tocItems = [
           No pior caso, o elemento está na última posição ou não está presente. 
           Isso exige percorrer todos os N elementos.
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           Complexidade: O(N)
-        </p>
+        </Callout>
         <p>
           O desempenho da busca linear cresce proporcionalmente ao tamanho do array.
         </p>
@@ -198,16 +194,16 @@ const tocItems = [
     </section>
 
     <section id="resumo" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Resumo">
+      <SectionHeader label="Resumo" title="Resumo de Complexidades">
         <Table2 slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Resumo de Complexidades</h3>
       <div class="text-muted-foreground text-sm">
-        <table class="w-full border-collapse">
-          <thead>
-            <tr class="border-b border-border">
-              <th class="text-left py-2 pr-4 text-primary font-medium">Operação</th>
-              <th class="text-left py-2 text-primary font-medium">Complexidade</th>
+            <table class="w-full border-collapse">
+              <caption class="sr-only">Complexidade das operações em arrays</caption>
+              <thead>
+                <tr class="border-b border-border">
+                  <th scope="col" class="text-left py-2 pr-4 text-primary font-medium">Operação</th>
+                  <th scope="col" class="text-left py-2 text-primary font-medium">Complexidade</th>
             </tr>
           </thead>
           <tbody>
@@ -240,18 +236,17 @@ const tocItems = [
       </div>
     </section>
 
-    <section class="mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">Arrays Ordenados</h1>
-      <p class="text-muted-foreground text-lg text-justify leading-relaxed">
+    <section id="arrays-ordenados" class="mb-12 scroll-mt-20">
+      <SectionHeader title="Arrays Ordenados" />
+      <Subtitle>
         Um <span class="text-primary font-medium">array ordenado</span> é simplesmente um array em que os elementos são mantidos em ordem — normalmente crescente ou decrescente. A principal motivação para manter um array ordenado é <span class="text-primary font-medium">facilitar e acelerar operações de busca</span>, já que a posição relativa dos elementos passa a fornecer informações úteis durante a procura.
-      </p>
+      </Subtitle>
     </section>
 
     <section id="definicao-ordenados" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="O que são Arrays Ordenados?">
         <ListOrdered slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">O que são Arrays Ordenados?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Um <span class="text-primary font-medium">array ordenado</span> é simplesmente um array em que os elementos são mantidos em ordem — normalmente crescente ou decrescente.
@@ -263,10 +258,9 @@ const tocItems = [
     </section>
 
     <section id="leitura-ordenado" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Leitura">
+      <SectionHeader label="Leitura" title="Leitura em um Array Ordenado">
         <Search slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Leitura em um Array Ordenado</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Considere o seguinte array:
@@ -287,17 +281,16 @@ const tocItems = [
         <p>
           Mesmo assim, utilizando busca sequencial, a complexidade ainda é:
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           O(N)
-        </p>
+        </Callout>
       </div>
     </section>
 
     <section id="insercao-ordenado" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Inserção">
+      <SectionHeader label="Inserção" title="Inserção">
         <Plus slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Inserção</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           A principal desvantagem de arrays ordenados aparece durante a inserção.
@@ -323,17 +316,16 @@ const tocItems = [
         <p>
           Devido a esse deslocamento, a complexidade da inserção continua sendo:
         </p>
-        <p class="font-mono bg-secondary p-3 rounded-lg text-center text-primary">
+        <Callout variant="metric">
           O(N)
-        </p>
+        </Callout>
       </div>
     </section>
 
     <section id="por-que-ordenado" class="mb-12 scroll-mt-20">
-      <SectionHeader label="Conceito">
+      <SectionHeader label="Conceito" title="Por que usar Arrays Ordenados?">
         <ListOrdered slot="icon" class="size-3" />
       </SectionHeader>
-      <h3 class="text-xl font-medium text-primary mb-3">Por que usar Arrays Ordenados?</h3>
       <div class="text-muted-foreground text-sm space-y-3 text-justify">
         <p>
           Apesar do custo de inserção, arrays ordenados oferecem uma vantagem extremamente importante: <span class="text-primary font-medium">possibilitam buscas muito mais eficientes</span>.
