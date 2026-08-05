@@ -1,0 +1,31 @@
+---
+type Variant = 'info' | 'warning' | 'metric';
+
+interface Props {
+  variant?: Variant;
+  label?: string;
+  class?: string;
+}
+
+const { variant = 'info', label, class: className = '' } = Astro.props;
+
+const styles = {
+  info: 'border-accent/60 bg-secondary/30 text-muted-foreground',
+  warning: 'border-destructive/70 bg-destructive/10 text-muted-foreground',
+  metric: 'border-accent/60 bg-secondary text-primary font-mono text-center'
+};
+---
+
+<aside class:list={["border-l-4 rounded-r-lg px-4 py-3", styles[variant], className]}>
+  {(label || Astro.slots.has('icon')) && (
+    <div class="flex items-center gap-2 mb-2 text-accent">
+      <span class="flex size-5 items-center justify-center" aria-hidden="true">
+        <slot name="icon" />
+      </span>
+      {label && <p class="text-xs font-semibold uppercase tracking-wider">{label}</p>}
+    </div>
+  )}
+  <div class:list={[variant === 'metric' ? 'text-base md:text-lg text-center' : 'text-sm text-justify']}>
+    <slot />
+  </div>
+</aside>
